@@ -17,6 +17,12 @@ public class PlayerBehavior : MonoBehaviour {
     public Vector3 startPosition;
     enum PlayerState {Normal, Hit};
     PlayerState state;
+
+    void Awake()
+    {
+        gameObject.SetActive(Settings.IsActive(playerID));
+    }
+
 	// Use this for initialization
 	void Start () {
         state = PlayerState.Normal;
