@@ -143,6 +143,10 @@ MonoBehaviour:
   shoot2: 0
   shoot3: 0
   shoot4: 0
+  shootDown1: 0
+  shootDown2: 0
+  shootDown3: 0
+  shootDown4: 0
   angle1: 0
   angle2: 0
   angle3: 0
@@ -450,7 +454,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1707415798051212, guid: 9db7690c8578f314ea5ed925d0fd3969, type: 2}
+      propertyPath: m_TagString
+      value: Deathzone
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114401412724137634, guid: 9db7690c8578f314ea5ed925d0fd3969, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 9db7690c8578f314ea5ed925d0fd3969, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &911408989
