@@ -13,9 +13,6 @@ public class MapManager : MonoBehaviour {
     public int size = 27;
     private int oldSize;
 
-    // Camera Height
-    public float camHeight;
-
 	// Use this for initialization
 	void Start ()
     {
