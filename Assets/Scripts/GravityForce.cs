@@ -34,22 +34,22 @@ public class GravityForce : MonoBehaviour {
 
     private void OnTriggerStay(Collider other)
     {
-        if (MapManager.current.finished)
+        GameObject colObj = other.gameObject;
+        float massOther = 2f;
+        float massHole = thrust;
+
+        if (other.tag == "Player")
         {
             GameObject colObj = other.gameObject;
             float massOther = 1f;
             float massHole = thrust;
 
-            if (other.tag == "Player")
-            {
-                //  Debug.Log("collided");
-
-                Vector3 colPos = colObj.transform.position;
-                Vector3 center = transform.position; // delete later
-                Vector3 forceVec = new Vector3(center.x - colPos.x, 0, center.z - colPos.z);
-                float distance = forceVec.magnitude;
-                if (distance < 0.5f)
-                    distance = 0.1f;
+            Vector3 colPos = colObj.transform.position;
+            Vector3 center = transform.position; // delete later
+            Vector3 forceVec = new Vector3(center.x - colPos.x, 0, center.z - colPos.z);
+            float distance = forceVec.magnitude;
+            if (distance < 0.5f)
+                distance = 0.5f;
                 //    Debug.Log("Forcevector: " + forceVec);
 
                 // Richtungsvektor * Kraft * Prozentuale Nähe zum center

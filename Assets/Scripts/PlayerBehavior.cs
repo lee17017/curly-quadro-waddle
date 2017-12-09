@@ -15,9 +15,13 @@ public class PlayerBehavior : MonoBehaviour {
     public float slowingFactor; //how fast your velocity gets reduced towards 0 
     public float maxVelocity;
     public float stunDuration;
+    public float shootHoldCooldown;
+    public float shootDownCooldown;
+    public float respawTime;
     public Vector3 startPosition;
-    enum PlayerState {Normal, Hit};
+    enum PlayerState {Normal, Respawn, Hit};
     private Color playerColor;
+    private float shootTimer;
     public Color playerColorStun;
     PlayerState state;
 
@@ -36,20 +40,22 @@ public class PlayerBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-        if (MapManager.current.finished)
+        checkMaxVelocity();
+        slowDown();
+        shootTimer += Time.deltaTime;
+        if (keyBoard && Input.GetKeyDown(KeyCode.Space))
         {
-            checkMaxVelocity();
-            slowDown();
-            if (keyBoard && Input.GetKeyDown(KeyCode.Space))
-            {
-                Shoot();
-            }
-            else if (!keyBoard && InputManager.current.GetShoot("" + playerID))
-            {
-                Shoot();
-            }
+            Shoot(shootDownCooldown);
         }
+        else if (!keyBoard && InputManager.current.GetShoot("" + playerID))
+        {
+            Shoot(shootDownCooldown);
+        }
+        else if (InputManager.current.GetShootDown("" + playerID)) {
+            Shoot(shootHoldCooldown);
+        }
+
+
 
         if (keyBoard)
         {
@@ -61,16 +67,19 @@ public class PlayerBehavior : MonoBehaviour {
         else
             transform.eulerAngles = new Vector3(0, InputManager.current.GetAngle(""+playerID)-90, 0);
     }
-
-    //Apply force towards Z-direction of Player and spawn Projectile in other direction
-    void Shoot()
+    void FixedUpdate()
     {
-        if (state == PlayerState.Normal)
+        ScreenWrap();
+    }
+    //Apply force towards Z-direction of Player and spawn Projectile in other direction
+    void Shoot(float timeLimit)
+    {
+        if (state != PlayerState.Hit && shootTimer>timeLimit)
         {
+            shootTimer = 0;
             body.AddRelativeForce(Vector3.forward * forceMultiplicator / Time.deltaTime);
             float xOffset = Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180) * this.transform.localScale.x;
             float zOffset = Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180) * this.transform.localScale.z;
-            
             GameObject temp = (GameObject)Instantiate(projectile, new Vector3(transform.position.x - xOffset, transform.position.y, transform.position.z - zOffset), transform.rotation);
             temp.GetComponentInChildren<SpriteRenderer>().color = playerColor;
             temp.GetComponent<ProjectileBehavior>().playerNmb = playerID;
@@ -117,6 +126,52 @@ public class PlayerBehavior : MonoBehaviour {
             GetComponent<Rigidbody>().velocity -= velRel;
             Debug.Log(velRel);
         }
+        else if(other.tag == "Deathzone")
+        { 
+            StartCoroutine(Respawn());
+        }
+    }
+
+
+    void ScreenWrap()
+    {
+
+        Vector3 newPosition = transform.position;
+        //x wrap
+        if (newPosition.x > 25)
+        {
+            newPosition.x -= 24;
+        }
+
+        if (newPosition.x < 1)
+        {
+            newPosition.x += 24;
+        }
+
+        //z wrap
+        if (newPosition.z > 14)
+        {
+            newPosition.z -= 14;
+        }
+
+        if (newPosition.z < 0)
+        {
+            newPosition.z += 14;
+        }
+
+        transform.position = newPosition;
+    }
+
+    IEnumerator Respawn() {
+        state = PlayerState.Respawn;
+        GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+        transform.position = startPosition + new Vector3(0, 0, 1000);
+        yield return new WaitForSeconds(respawTime / 2);
+        StopCoroutine(Stun());
+        GetComponentInChildren<SpriteRenderer>().color = playerColor;
+        transform.position = startPosition;
+        yield return new WaitForSeconds(respawTime / 2);
+        state = PlayerState.Normal;
     }
 
     IEnumerator Stun()
@@ -131,6 +186,9 @@ public class PlayerBehavior : MonoBehaviour {
 
         }
         GetComponentInChildren<SpriteRenderer>().color = playerColor;
-        state = PlayerState.Normal;
+        if(state == PlayerState.Hit)
+            state = PlayerState.Normal;
     }
+
+
 }
