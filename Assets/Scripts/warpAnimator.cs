@@ -22,17 +22,18 @@ public class warpAnimator : MonoBehaviour {
     IEnumerator warpAnimation()
     {
         while (true) {
+            /* yield return new WaitForSeconds(spawn_delay);
+             GameObject orange = Instantiate(gameObjects[1]);            
+             orange.transform.parent = this.transform;            
+             orange.transform.localRotation = gameObjects[1].transform.rotation;
+             orange.transform.localPosition = new Vector3(0, 0.001f, 0);
+             */
             yield return new WaitForSeconds(spawn_delay);
-            GameObject orange = Instantiate(gameObjects[1]);            
-            orange.transform.parent = this.transform;            
-            orange.transform.rotation = gameObjects[1].transform.rotation;
-            orange.transform.position = new Vector3(0, 0.001f, 0);
-
             yield return new WaitForSeconds(spawn_difference_between);
             GameObject blue = Instantiate(gameObjects[0]);
             blue.transform.parent = this.transform;
-            blue.transform.position = new Vector3(0, 0.001f, 0);
-            blue.transform.rotation = gameObjects[0].transform.rotation;
+            blue.transform.localPosition = new Vector3(0, 0.001f, 0);
+            blue.transform.localRotation = gameObjects[0].transform.rotation;
         }
     }
 }

@@ -20,7 +20,7 @@ public class PlayerJoin : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (AnimationManager.current.introFinished)
+        if (AnimationManager.current.finished)
         {
             CheckStart();
             SwitchJoined();
@@ -108,7 +108,7 @@ public class PlayerJoin : MonoBehaviour {
     {
         if(Settings.p1 || Settings.p2 || Settings.p3 || Settings.p4)
         {
-            SceneManager.LoadScene(1);
+            StartCoroutine(AnimationManager.current.TransitionMenu());
         }
     }
 }
