@@ -66,7 +66,10 @@ public class PlayerBehavior : MonoBehaviour {
         else
             transform.eulerAngles = new Vector3(0, InputManager.current.GetAngle(""+playerID)-90, 0);
     }
-
+    void FixedUpdate()
+    {
+        ScreenWrap();
+    }
     //Apply force towards Z-direction of Player and spawn Projectile in other direction
     void Shoot(float timeLimit)
     {
@@ -122,6 +125,36 @@ public class PlayerBehavior : MonoBehaviour {
             GetComponent<Rigidbody>().velocity -= velRel;
             Debug.Log(velRel);
         }
+    }
+
+
+    void ScreenWrap()
+    {
+
+        Vector3 newPosition = transform.position;
+        //x wrap
+        if (newPosition.x > 25)
+        {
+            newPosition.x -= 24;
+        }
+
+        if (newPosition.x < 1)
+        {
+            newPosition.x += 24;
+        }
+
+        //z wrap
+        if (newPosition.z > 14)
+        {
+            newPosition.z -= 14;
+        }
+
+        if (newPosition.z < 0)
+        {
+            newPosition.z += 14;
+        }
+
+        transform.position = newPosition;
     }
 
     IEnumerator Stun()

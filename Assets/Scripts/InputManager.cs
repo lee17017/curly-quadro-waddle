@@ -53,7 +53,7 @@ public class InputManager : MonoBehaviour {
             shoot2 = true;
             Debug.Log("Shoot 2");
         }
-        if (Input.GetKey(KeyCode.Joystick1Button7) || (Input.GetAxis("RT1") < -0.1))
+        if (Input.GetKey(KeyCode.Joystick1Button7) || (Input.GetAxis("RT2") < -0.1))
         {
             shootDown2 = true;
         }
@@ -70,7 +70,7 @@ public class InputManager : MonoBehaviour {
             rt3 = true;
             Debug.Log("Shoot 3");
         }
-        if (Input.GetKey(KeyCode.Joystick1Button7) || (Input.GetAxis("RT1") < -0.1))
+        if (Input.GetKey(KeyCode.Joystick1Button7) || (Input.GetAxis("RT3") < -0.1))
         {
             shootDown3 = true;
         }
@@ -87,7 +87,7 @@ public class InputManager : MonoBehaviour {
             shoot4 = true;
             Debug.Log("Shoot 4");
         }
-        if (Input.GetKey(KeyCode.Joystick1Button7) || (Input.GetAxis("RT1") < -0.1))
+        if (Input.GetKey(KeyCode.Joystick1Button7) || (Input.GetAxis("RT4") < -0.1))
         {
             shootDown4 = true;
         }
