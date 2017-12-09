@@ -163,7 +163,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: e528e9634f012f945919f6f4eb8259b2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 703761f8167469140876562dc3fa2567, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -328,13 +328,14 @@ MonoBehaviour:
   p2Target: {r: 0, g: 0.20689654, b: 0.35294116, a: 1}
   p3Target: {r: 0, g: 0.32352942, b: 0.095943205, a: 1}
   p4Target: {r: 0.28676468, g: 0.12459431, b: 0, a: 1}
-  introFinished: 0
+  finished: 0
   flickerNumber: 1
   flickerTitle: 0
   flickerNumberStrength: 0.02
   flickerTitleStrength: 0.02
   flickerNumberMin: 0.7
   flickerTitleMin: 0.8
+  transitionTime: 3
 --- !u!1 &437220849
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,7 +400,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: de069b22e8c4041478de7433c6311c1d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 726182d828dd40f4aa71e86f58e00be1, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -474,7 +475,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 701efb21b7a5b3941a69ca4f0c13fa9d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4659fe40748a03a4894112fa381dd464, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -679,7 +680,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 72177ffd9b6c828489fa924f69574a08, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d7dadb4d7d005094e85bb238e21f4847, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -995,7 +996,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 8afb409e72c711143b1dc35c27774417, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a8e00364916405743b6442adc9b00a6d, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0

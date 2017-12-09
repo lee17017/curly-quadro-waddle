@@ -17,12 +17,22 @@ public class PlayerBehavior : MonoBehaviour {
     public float stunDuration;
     public Vector3 startPosition;
     enum PlayerState {Normal, Hit};
+    private Color playerColor;
+    public Color playerColorStun;
     PlayerState state;
+
+    void Awake()
+    {
+        gameObject.SetActive(Settings.IsActive(playerID));
+    }
+
 	// Use this for initialization
 	void Start () {
         state = PlayerState.Normal;
         body = this.GetComponent<Rigidbody>();
         startPosition = this.transform.position;
+        playerColor = GetComponentInChildren<SpriteRenderer>().color;
+
 
     }
 	
@@ -57,9 +67,12 @@ public class PlayerBehavior : MonoBehaviour {
         if (state == PlayerState.Normal)
         {
             body.AddRelativeForce(Vector3.forward * forceMultiplicator / Time.deltaTime);
-            float xOffset = Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180) * this.transform.localScale.x *2;
-            float zOffset = Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180) * this.transform.localScale.z *2;
-            Instantiate(projectile, new Vector3(transform.position.x - xOffset, transform.position.y, transform.position.z - zOffset), transform.rotation);
+            float xOffset = Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180) * this.transform.localScale.x;
+            float zOffset = Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180) * this.transform.localScale.z;
+            
+            GameObject temp = (GameObject)Instantiate(projectile, new Vector3(transform.position.x - xOffset, transform.position.y, transform.position.z - zOffset), transform.rotation);
+            temp.GetComponentInChildren<SpriteRenderer>().color = playerColor;
+            temp.GetComponent<ProjectileBehavior>().playerNmb = playerID;
         }
     }
 
@@ -90,7 +103,7 @@ public class PlayerBehavior : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Projectile")
+        if (other.tag == "Projectile" && other.GetComponent<ProjectileBehavior>().playerNmb != playerID)
         {
             Vector3 vel = other.GetComponent<Rigidbody>().velocity;
             body.AddForce(vel * projectileHitMultiplicator / Time.deltaTime);
@@ -99,14 +112,24 @@ public class PlayerBehavior : MonoBehaviour {
                 StartCoroutine(Stun());
         }
         else if (other.tag == "Player") {
-            Debug.Log("player hit");
+            Vector3 velRel = GetComponent<Rigidbody>().velocity-other.GetComponent<Rigidbody>().velocity;
+            GetComponent<Rigidbody>().velocity -= velRel;
+            Debug.Log(velRel);
         }
     }
 
     IEnumerator Stun()
     {
         state = PlayerState.Hit;
-        yield return new WaitForSeconds(stunDuration);
+        for (int i = 0; i < 5; i++)
+        {
+            GetComponentInChildren<SpriteRenderer>().color = playerColorStun;
+            yield return new WaitForSeconds(stunDuration / 5);
+            GetComponentInChildren<SpriteRenderer>().color = playerColor;
+            yield return new WaitForSeconds(stunDuration / 5);
+
+        }
+        GetComponentInChildren<SpriteRenderer>().color = playerColor;
         state = PlayerState.Normal;
     }
 }
