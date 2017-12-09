@@ -193,7 +193,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 1972860396185064, guid: aae328f29bd5fba459f30abe2b1338c7, type: 2}
   tileMaterial: {fileID: 2100000, guid: e3cec9e7bcfdf564ba9056f5f400b1ea, type: 2}
+  hillMaterial: {fileID: 2100000, guid: bdbb9d4f8fd49cb4c8fa7378f4458d89, type: 2}
   tileColor: {r: 0.93103456, g: 0.5, b: 1, a: 1}
+  hillColor: {r: 1, g: 1, b: 1, a: 1}
   p1: {fileID: 2015539926}
   p2: {fileID: 1227965766}
   p3: {fileID: 1414956359}
