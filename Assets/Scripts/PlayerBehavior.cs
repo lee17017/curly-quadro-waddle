@@ -17,11 +17,13 @@ public class PlayerBehavior : MonoBehaviour {
     public float stunDuration;
     public float shootHoldCooldown;
     public float shootDownCooldown;
-    public float respawTime;
+    public float respawnTime;
+    public float lastHitTime;
     public Vector3 startPosition;
     enum PlayerState {Normal, Respawn, Hit};
     private Color playerColor;
     private float shootTimer;
+    private int lastHitBy = 0;
     public Color playerColorStun;
     PlayerState state;
 
@@ -40,22 +42,24 @@ public class PlayerBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        checkMaxVelocity();
-        slowDown();
-        shootTimer += Time.deltaTime;
-        if (keyBoard && Input.GetKeyDown(KeyCode.Space))
+        if (MapManager.current.finished)
         {
-            Shoot(shootDownCooldown);
+            checkMaxVelocity();
+            slowDown();
+            shootTimer += Time.deltaTime;
+            if (keyBoard && Input.GetKeyDown(KeyCode.Space))
+            {
+                Shoot(shootDownCooldown);
+            }
+            else if (!keyBoard && InputManager.current.GetShoot("" + playerID))
+            {
+                Shoot(shootDownCooldown);
+            }
+            else if (InputManager.current.GetShootDown("" + playerID))
+            {
+                Shoot(shootHoldCooldown);
+            }
         }
-        else if (!keyBoard && InputManager.current.GetShoot("" + playerID))
-        {
-            Shoot(shootDownCooldown);
-        }
-        else if (InputManager.current.GetShootDown("" + playerID)) {
-            Shoot(shootHoldCooldown);
-        }
-
-
 
         if (keyBoard)
         {
@@ -117,18 +121,21 @@ public class PlayerBehavior : MonoBehaviour {
         {
             Vector3 vel = other.GetComponent<Rigidbody>().velocity;
             body.AddForce(vel * projectileHitMultiplicator / Time.deltaTime);
+            lastHitBy = other.GetComponent<ProjectileBehavior>().playerNmb;
+            StopCoroutine("resetLastHit");
+            StartCoroutine("resetLastHit");
             Destroy(other.gameObject);
             if (state == PlayerState.Normal)
-                StartCoroutine(Stun());
+                StartCoroutine("Stun");
         }
         else if (other.tag == "Player") {
-            Vector3 velRel = GetComponent<Rigidbody>().velocity-other.GetComponent<Rigidbody>().velocity;
-            GetComponent<Rigidbody>().velocity -= velRel;
-            Debug.Log(velRel);
+            //Vector3 velRel = GetComponent<Rigidbody>().velocity-other.GetComponent<Rigidbody>().velocity;
+            //GetComponent<Rigidbody>().velocity -= velRel;
+            //Debug.Log(velRel);
         }
         else if(other.tag == "Deathzone")
         { 
-            StartCoroutine(Respawn());
+            StartCoroutine("Respawn");
         }
     }
 
@@ -165,13 +172,20 @@ public class PlayerBehavior : MonoBehaviour {
     IEnumerator Respawn() {
         state = PlayerState.Respawn;
         GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-        transform.position = startPosition + new Vector3(0, 0, 1000);
-        yield return new WaitForSeconds(respawTime / 2);
-        StopCoroutine(Stun());
+        transform.position = startPosition + new Vector3(0, 5+playerID*2, 100);
+        StopCoroutine("Stun");
         GetComponentInChildren<SpriteRenderer>().color = playerColor;
+        yield return new WaitForSeconds(respawnTime / 2);
         transform.position = startPosition;
-        yield return new WaitForSeconds(respawTime / 2);
+        yield return new WaitForSeconds(respawnTime / 2);
         state = PlayerState.Normal;
+    }
+
+    IEnumerator resetLastHit()
+    {
+        yield return new WaitForSeconds(lastHitTime);
+        lastHitBy = 0;
+        Debug.Log("reset");
     }
 
     IEnumerator Stun()
