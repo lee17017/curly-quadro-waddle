@@ -150,20 +150,20 @@ public class PlayerBehavior : MonoBehaviour {
 
         Vector3 newPosition = transform.position;
         //x wrap
-        if (newPosition.x > 25)
+        if (newPosition.x > 24.5f)
         {
-            newPosition.x -= 24;
+            newPosition.x -= 23;
         }
 
-        if (newPosition.x < 1)
+        if (newPosition.x < 1.5f)
         {
-            newPosition.x += 24;
+            newPosition.x += 23;
         }
 
         //z wrap
-        if (newPosition.z > 14)
+        if (newPosition.z > 13.5f)
         {
-            newPosition.z -= 14;
+            newPosition.z -= 13.5f;
         }
 
         if (newPosition.z < 0)
