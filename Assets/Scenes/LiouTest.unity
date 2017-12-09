@@ -567,6 +567,21 @@ Prefab:
       propertyPath: m_Color.g
       value: 0.63235295
       objectReference: {fileID: 0}
+    - target: {fileID: 114932875083214194, guid: f646e743a85b09146babf3ad361da5fb,
+        type: 2}
+      propertyPath: keyBoard
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 54076503060983942, guid: f646e743a85b09146babf3ad361da5fb,
+        type: 2}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 65257303967696864, guid: f646e743a85b09146babf3ad361da5fb,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f646e743a85b09146babf3ad361da5fb, type: 2}
   m_IsPrefabParent: 0
@@ -701,11 +716,6 @@ Prefab:
     - target: {fileID: 4706502654279012, guid: f646e743a85b09146babf3ad361da5fb, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114932875083214194, guid: f646e743a85b09146babf3ad361da5fb,
-        type: 2}
-      propertyPath: keyBoard
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f646e743a85b09146babf3ad361da5fb, type: 2}
