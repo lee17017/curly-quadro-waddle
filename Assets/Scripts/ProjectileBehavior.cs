@@ -5,6 +5,7 @@ using UnityEngine;
 public class ProjectileBehavior : MonoBehaviour {
 
     Rigidbody body;
+    public int playerNmb;
     public float projectileSpeed;
     public float lifeTime;
 	// Use this for initialization
