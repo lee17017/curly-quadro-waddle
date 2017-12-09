@@ -47,7 +47,7 @@ public class GravityForce : MonoBehaviour {
             Vector3 center = transform.position; // delete later
             Vector3 forceVec = new Vector3(center.x - colPos.x, 0, center.z - colPos.z);
             float distance = forceVec.magnitude;
-            if (distance < 0.1f)
+            if (distance < 0.5f)
                 distance = 0.1f;
                 //    Debug.Log("Forcevector: " + forceVec);
 
