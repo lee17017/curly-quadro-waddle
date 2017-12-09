@@ -18,6 +18,7 @@ public class PlayerBehavior : MonoBehaviour {
     public Vector3 startPosition;
     enum PlayerState {Normal, Hit};
     private Color playerColor;
+    public Color playerColorStun;
     PlayerState state;
 	// Use this for initialization
 	void Start () {
@@ -25,6 +26,7 @@ public class PlayerBehavior : MonoBehaviour {
         body = this.GetComponent<Rigidbody>();
         startPosition = this.transform.position;
         playerColor = GetComponentInChildren<SpriteRenderer>().color;
+
 
     }
 	
@@ -113,7 +115,15 @@ public class PlayerBehavior : MonoBehaviour {
     IEnumerator Stun()
     {
         state = PlayerState.Hit;
-        yield return new WaitForSeconds(stunDuration);
+        for (int i = 0; i < 5; i++)
+        {
+            GetComponentInChildren<SpriteRenderer>().color = playerColorStun;
+            yield return new WaitForSeconds(stunDuration / 5);
+            GetComponentInChildren<SpriteRenderer>().color = playerColor;
+            yield return new WaitForSeconds(stunDuration / 5);
+
+        }
+        GetComponentInChildren<SpriteRenderer>().color = playerColor;
         state = PlayerState.Normal;
     }
 }
