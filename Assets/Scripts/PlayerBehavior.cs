@@ -5,16 +5,20 @@ using UnityEngine;
 public class PlayerBehavior : MonoBehaviour {
 
     public int playerID;
-
+    
     Rigidbody body;
     public float forceMultiplicator = 30;
     public float projectileHitMultiplicator;
     public float rotationSpeed;
     public GameObject projectile;
     public float slowingFactor; //how fast your velocity gets reduced towards 0 
-    public float maxVelocity; 
+    public float maxVelocity;
+    public float stunDuration;
+    enum PlayerState {Normal, Hit};
+    PlayerState state;
 	// Use this for initialization
 	void Start () {
+        state = PlayerState.Normal;
         body = this.GetComponent<Rigidbody>();
 	}
 	
@@ -38,10 +42,13 @@ public class PlayerBehavior : MonoBehaviour {
     //Apply force towards Z-direction of Player and spawn Projectile in other direction
     void Shoot()
     {
-        body.AddRelativeForce(Vector3.forward*forceMultiplicator/Time.deltaTime);
-        float xOffset = Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180) * this.transform.localScale.x;
-        float zOffset = Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180) * this.transform.localScale.x;
-        Instantiate(projectile, new Vector3(transform.position.x-xOffset, transform.position.y, transform.position.z-zOffset), transform.rotation);
+        if (state == PlayerState.Normal)
+        {
+            body.AddRelativeForce(Vector3.forward * forceMultiplicator / Time.deltaTime);
+            float xOffset = Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180) * this.transform.localScale.x *2;
+            float zOffset = Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180) * this.transform.localScale.z *2;
+            Instantiate(projectile, new Vector3(transform.position.x - xOffset, transform.position.y, transform.position.z - zOffset), transform.rotation);
+        }
     }
 
 
@@ -75,6 +82,18 @@ public class PlayerBehavior : MonoBehaviour {
             Vector3 vel = other.GetComponent<Rigidbody>().velocity;
             body.AddForce(vel * projectileHitMultiplicator / Time.deltaTime);
             Destroy(other.gameObject);
+            if (state == PlayerState.Normal)
+                StartCoroutine(Stun());
         }
+        else if (other.tag == "Player") {
+            Debug.Log("player hit");
+        }
+    }
+
+    IEnumerator Stun()
+    {
+        state = PlayerState.Hit;
+        yield return new WaitForSeconds(stunDuration);
+        state = PlayerState.Normal;
     }
 }
