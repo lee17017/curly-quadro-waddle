@@ -582,6 +582,21 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114932875083214194, guid: f646e743a85b09146babf3ad361da5fb,
+        type: 2}
+      propertyPath: playerColorStun.g
+      value: 0.32352942
+      objectReference: {fileID: 0}
+    - target: {fileID: 114932875083214194, guid: f646e743a85b09146babf3ad361da5fb,
+        type: 2}
+      propertyPath: playerColorStun.b
+      value: 0.095943205
+      objectReference: {fileID: 0}
+    - target: {fileID: 114932875083214194, guid: f646e743a85b09146babf3ad361da5fb,
+        type: 2}
+      propertyPath: playerColorStun.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f646e743a85b09146babf3ad361da5fb, type: 2}
   m_IsPrefabParent: 0
@@ -716,6 +731,26 @@ Prefab:
     - target: {fileID: 4706502654279012, guid: f646e743a85b09146babf3ad361da5fb, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114932875083214194, guid: f646e743a85b09146babf3ad361da5fb,
+        type: 2}
+      propertyPath: playerColorStun.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114932875083214194, guid: f646e743a85b09146babf3ad361da5fb,
+        type: 2}
+      propertyPath: playerColorStun.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114932875083214194, guid: f646e743a85b09146babf3ad361da5fb,
+        type: 2}
+      propertyPath: playerColorStun.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114932875083214194, guid: f646e743a85b09146babf3ad361da5fb,
+        type: 2}
+      propertyPath: playerColorStun.r
+      value: 0.28676468
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f646e743a85b09146babf3ad361da5fb, type: 2}
