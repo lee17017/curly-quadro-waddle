@@ -82,7 +82,7 @@ public class MapManager : MonoBehaviour {
         {
             for(int y=6; y<=8; y++)
             {
-                mapTiles[x, y].GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.white);
+                mapTiles[x, y].GetComponent<Renderer>().material = hillMaterial;
             }
         }
 
