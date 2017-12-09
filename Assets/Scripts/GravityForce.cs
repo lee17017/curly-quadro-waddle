@@ -6,16 +6,15 @@ public class GravityForce : MonoBehaviour {
 
     // public Rigidbody2D rb;
     // public GameObject circle;
-    private float thrust;
+    public float thrust;
     private float radius;
-    private Vector2 center;
+    private Vector3 center;
 
 
     void Start()
     {
         center = transform.position;
         radius = GetComponent<SphereCollider>().radius;
-        thrust = 0;
 
         // rb = GetComponent<Rigidbody2D>();
         Debug.Log("started");
@@ -39,11 +38,11 @@ public class GravityForce : MonoBehaviour {
         GameObject colObj = collision.gameObject;
         Debug.Log("collided");
 
-        Vector2 colPos = colObj.transform.position;
-        Vector2 forceVec = new Vector2(center.x - colPos.x, center.y - colPos.y);
+        Vector3 colPos = colObj.transform.position;
+        Vector3 center = transform.position; // delete later
+        Vector3 forceVec = new Vector3(center.x - colPos.x, 0, center.z - colPos.z);
 
         Debug.Log("Force: " + forceVec);
-        thrust = forceVec.magnitude / 9;
         colObj.GetComponent<Rigidbody>().AddForce(forceVec.normalized * thrust);
         
 
