@@ -33,21 +33,31 @@ public class GravityForce : MonoBehaviour {
 	}
 
 
-    private void OnTriggerStay(Collider collision)
+    private void OnTriggerStay(Collider other)
     {
-        GameObject colObj = collision.gameObject;
-        Debug.Log("collided");
+        GameObject colObj = other.gameObject;
 
-        Vector3 colPos = colObj.transform.position;
-        Vector3 center = transform.position; // delete later
-        Vector3 forceVec = new Vector3(center.x - colPos.x, 0, center.z - colPos.z);
+        if (other.tag == "Player")
+        {
+            Debug.Log("collided");
 
-        Debug.Log("Force: " + forceVec);
-        colObj.GetComponent<Rigidbody>().AddForce(forceVec.normalized * thrust);
-        
+            Vector3 colPos = colObj.transform.position;
+            Vector3 center = transform.position; // delete later
+            Vector3 forceVec = new Vector3(center.x - colPos.x, 0, center.z - colPos.z);
+
+            Debug.Log("Forcevector: " + forceVec);
+
+            // Richtungsvektor * Kraft * Prozentuale Nähe zum center
+            colObj.GetComponent<Rigidbody>().AddForce(forceVec.normalized * thrust * (1 - (forceVec.magnitude / radius)));
 
 
-        // rb.AddForce(transform.up * thrust);
+            Debug.Log("calculated Force: " + (1 - (forceVec.magnitude / radius)));
+
+
+            // rb.AddForce(transform.up * thrust);
+        }
+
+
     }
 
 
