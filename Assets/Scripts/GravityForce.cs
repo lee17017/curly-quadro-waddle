@@ -15,7 +15,7 @@ public class GravityForce : MonoBehaviour {
     {
         center = transform.position;
         radius = GetComponent<SphereCollider>().radius * transform.localScale.z;
-        Debug.Log(radius);
+        //Debug.Log(radius);
         // rb = GetComponent<Rigidbody2D>();
     }
 
