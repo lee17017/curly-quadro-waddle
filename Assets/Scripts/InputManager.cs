@@ -40,7 +40,7 @@ public class InputManager : MonoBehaviour {
 
         // Player 2
         shoot2 = false;
-        if (Input.GetKeyDown(KeyCode.Joystick2Button7) || Input.GetKey(KeyCode.Joystick2Button1)|| (Input.GetAxis("RT2") < -0.1 && !rt2))
+        if (Input.GetKeyDown(KeyCode.Joystick2Button7) || Input.GetKeyDown(KeyCode.Joystick2Button1)|| (Input.GetAxis("RT2") < -0.1 && !rt2))
         {
             rt2 = true;
             shoot2 = true;

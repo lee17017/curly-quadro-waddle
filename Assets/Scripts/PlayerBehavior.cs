@@ -14,13 +14,16 @@ public class PlayerBehavior : MonoBehaviour {
     public float slowingFactor; //how fast your velocity gets reduced towards 0 
     public float maxVelocity;
     public float stunDuration;
+    public Vector3 startPosition;
     enum PlayerState {Normal, Hit};
     PlayerState state;
 	// Use this for initialization
 	void Start () {
         state = PlayerState.Normal;
         body = this.GetComponent<Rigidbody>();
-	}
+        startPosition = this.transform.position;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -72,7 +75,8 @@ public class PlayerBehavior : MonoBehaviour {
     //constant slowDown of Player
     void slowDown()
     {
-        body.velocity -= body.velocity.normalized * Time.deltaTime * slowingFactor;
+        body.velocity -= body.velocity * Time.deltaTime * slowingFactor;
+        
     }
 
     private void OnTriggerEnter(Collider other)
