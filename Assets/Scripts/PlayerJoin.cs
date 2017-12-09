@@ -20,9 +20,12 @@ public class PlayerJoin : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        CheckStart();
-        SwitchJoined();
-        UpdateColor();
+        if (AnimationManager.current.introFinished)
+        {
+            CheckStart();
+            SwitchJoined();
+            UpdateColor();
+        }
     }
 
     void UpdateColor()

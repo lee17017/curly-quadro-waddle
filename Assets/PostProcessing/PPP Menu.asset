@@ -87,21 +87,21 @@ MonoBehaviour:
     m_Settings:
       lowPercent: 1
       highPercent: 95
-      minLuminance: -46.35
-      maxLuminance: -3.4
-      keyValue: 0.1
+      minLuminance: 17.12
+      maxLuminance: -4
+      keyValue: 0.07
       dynamicKeyValue: 0
       adaptationType: 0
-      speedUp: 2
-      speedDown: 1
+      speedUp: 0.5
+      speedDown: 0.5
       logMin: -16
       logMax: 16
   bloom:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 0.38
-        threshold: 0.32
+        intensity: 0.75
+        threshold: 0.5
         softKnee: 0.478
         radius: 2.15
         antiFlicker: 0
@@ -114,8 +114,8 @@ MonoBehaviour:
       tonemapping:
         tonemapper: 2
         neutralBlackIn: 0.006
-        neutralWhiteIn: 10.9
-        neutralBlackOut: -0.038
+        neutralWhiteIn: 6
+        neutralBlackOut: -0.025
         neutralWhiteOut: 7
         neutralWhiteLevel: 2.1
         neutralWhiteClip: 10
