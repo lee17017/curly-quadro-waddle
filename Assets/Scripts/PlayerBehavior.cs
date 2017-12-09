@@ -17,8 +17,9 @@ public class PlayerBehavior : MonoBehaviour {
     public float stunDuration;
     public float shootHoldCooldown;
     public float shootDownCooldown;
+    public float respawTime;
     public Vector3 startPosition;
-    enum PlayerState {Normal, Cooldown, Hit};
+    enum PlayerState {Normal, Respawn, Hit};
     private Color playerColor;
     private float shootTimer;
     public Color playerColorStun;
@@ -50,7 +51,7 @@ public class PlayerBehavior : MonoBehaviour {
         {
             Shoot(shootDownCooldown);
         }
-        else if (InputManager.current.GetShootDown("" + playerID) && state != PlayerState.Cooldown) {
+        else if (InputManager.current.GetShootDown("" + playerID)) {
             Shoot(shootHoldCooldown);
         }
 
@@ -125,6 +126,10 @@ public class PlayerBehavior : MonoBehaviour {
             GetComponent<Rigidbody>().velocity -= velRel;
             Debug.Log(velRel);
         }
+        else if(other.tag == "Deathzone")
+        { 
+            StartCoroutine(Respawn());
+        }
     }
 
 
@@ -155,6 +160,18 @@ public class PlayerBehavior : MonoBehaviour {
         }
 
         transform.position = newPosition;
+    }
+
+    IEnumerator Respawn() {
+        state = PlayerState.Respawn;
+        GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+        transform.position = startPosition + new Vector3(0, 0, 1000);
+        yield return new WaitForSeconds(respawTime / 2);
+        StopCoroutine(Stun());
+        GetComponentInChildren<SpriteRenderer>().color = playerColor;
+        transform.position = startPosition;
+        yield return new WaitForSeconds(respawTime / 2);
+        state = PlayerState.Normal;
     }
 
     IEnumerator Stun()
