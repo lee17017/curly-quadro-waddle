@@ -24,14 +24,14 @@ public class MiniPlayerBehaviour : MonoBehaviour {
         
         Vector3 newPosition = transform.position;
         //x wrap
-        if(newPosition.x > 27)
+        if(newPosition.x > 25)
         {
-            newPosition.x -= 27;
+            newPosition.x -= 24;
         }
 
-        if(newPosition.x < 0)
+        if(newPosition.x < 1)
         {
-            newPosition.x += 27;
+            newPosition.x += 24;
         }
 
         //z wrap

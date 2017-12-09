@@ -739,6 +739,11 @@ Prefab:
       propertyPath: keyBoard
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 54076503060983942, guid: f646e743a85b09146babf3ad361da5fb,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 116
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f646e743a85b09146babf3ad361da5fb, type: 2}
   m_IsPrefabParent: 0
