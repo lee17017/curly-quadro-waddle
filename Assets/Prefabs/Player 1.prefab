@@ -162,7 +162,10 @@ MonoBehaviour:
   slowingFactor: 0.05
   maxVelocity: 10
   stunDuration: 1
-  shootCooldown: 0.3
+  shootHoldCooldown: 0.3
+  shootDownCooldown: 0.05
+  respawnTime: 2
+  lastHitTime: 5
   startPosition: {x: 0, y: 0, z: 0}
   playerColorStun: {r: 0.28676468, g: 0, b: 0, a: 1}
 --- !u!212 &212578427322713502

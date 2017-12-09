@@ -738,18 +738,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114932875083214194, guid: f646e743a85b09146babf3ad361da5fb,
         type: 2}
-      propertyPath: shootHoldCooldown
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114932875083214194, guid: f646e743a85b09146babf3ad361da5fb,
-        type: 2}
-      propertyPath: shootDownCooldown
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 114932875083214194, guid: f646e743a85b09146babf3ad361da5fb,
-        type: 2}
-      propertyPath: respawTime
-      value: 2
+      propertyPath: stunDuration
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f646e743a85b09146babf3ad361da5fb, type: 2}
