@@ -117,6 +117,20 @@ public class PlayerBehavior : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.tag == "Player") {
+            //Vector3 velRel = GetComponent<Rigidbody>().velocity-other.GetComponent<Rigidbody>().velocity;
+            //GetComponent<Rigidbody>().velocity -= velRel;
+            //Debug.Log(velRel);
+        }
+        else if(other.tag == "Deathzone")
+        { 
+            StartCoroutine("Respawn");
+        }
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        Transform other = col.transform;
         if (other.tag == "Projectile" && other.GetComponent<ProjectileBehavior>().playerNmb != playerID)
         {
             Vector3 vel = other.GetComponent<Rigidbody>().velocity;
@@ -127,15 +141,6 @@ public class PlayerBehavior : MonoBehaviour {
             Destroy(other.gameObject);
             if (state == PlayerState.Normal)
                 StartCoroutine("Stun");
-        }
-        else if (other.tag == "Player") {
-            //Vector3 velRel = GetComponent<Rigidbody>().velocity-other.GetComponent<Rigidbody>().velocity;
-            //GetComponent<Rigidbody>().velocity -= velRel;
-            //Debug.Log(velRel);
-        }
-        else if(other.tag == "Deathzone")
-        { 
-            StartCoroutine("Respawn");
         }
     }
 
