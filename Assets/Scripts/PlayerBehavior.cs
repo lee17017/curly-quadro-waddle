@@ -40,22 +40,24 @@ public class PlayerBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        checkMaxVelocity();
-        slowDown();
-        shootTimer += Time.deltaTime;
-        if (keyBoard && Input.GetKeyDown(KeyCode.Space))
+        if (MapManager.current.finished)
         {
-            Shoot(shootDownCooldown);
+            checkMaxVelocity();
+            slowDown();
+            shootTimer += Time.deltaTime;
+            if (keyBoard && Input.GetKeyDown(KeyCode.Space))
+            {
+                Shoot(shootDownCooldown);
+            }
+            else if (!keyBoard && InputManager.current.GetShoot("" + playerID))
+            {
+                Shoot(shootDownCooldown);
+            }
+            else if (InputManager.current.GetShootDown("" + playerID))
+            {
+                Shoot(shootHoldCooldown);
+            }
         }
-        else if (!keyBoard && InputManager.current.GetShoot("" + playerID))
-        {
-            Shoot(shootDownCooldown);
-        }
-        else if (InputManager.current.GetShootDown("" + playerID)) {
-            Shoot(shootHoldCooldown);
-        }
-
-
 
         if (keyBoard)
         {
