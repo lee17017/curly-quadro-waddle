@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerBehavior : MonoBehaviour {
 
+    public int playerID;
+
     Rigidbody body;
     public float forceMultiplicator = 30;
     public float projectileHitMultiplicator;
@@ -20,14 +22,17 @@ public class PlayerBehavior : MonoBehaviour {
 	void Update () {
         checkMaxVelocity();
         slowDown();
-        if (Input.GetButtonDown("Shoot")) {
+        if (InputManager.current.GetShoot(""+playerID)) {
             Shoot();
         }
+        /*
         if (Input.GetKey(KeyCode.LeftArrow))
             this.transform.Rotate(new Vector3(0, -rotationSpeed * Time.deltaTime, 0));
         else if (Input.GetKey(KeyCode.RightArrow))
             this.transform.Rotate(new Vector3(0, rotationSpeed * Time.deltaTime, 0));
+        */
 
+        transform.eulerAngles = new Vector3(0, InputManager.current.GetAngle(""+playerID)-90, 0);
     }
 
     //Apply force towards Z-direction of Player and spawn Projectile in other direction

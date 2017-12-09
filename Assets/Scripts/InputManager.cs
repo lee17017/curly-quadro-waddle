@@ -6,6 +6,7 @@ public class InputManager : MonoBehaviour {
 
     public static InputManager current;
 
+    public bool shoot1, shoot2, shoot3, shoot4;
     public float angle1, angle2, angle3, angle4;
 
     private float hor1, vert1, hor2, hor3,hor4,vert2,vert3,vert4;
@@ -23,10 +24,12 @@ public class InputManager : MonoBehaviour {
 
     void CheckButtons()
     {
+        shoot1 = false;
         // Player 1
         if (Input.GetKeyDown(KeyCode.Joystick1Button7) || (Input.GetAxis("RT1") < -0.1 && !rt1))
         {
             rt1 = true;
+            shoot1 = true;
             Debug.Log("Shoot 1");
         }
         if(Input.GetAxis("RT1") > -0.1 && Input.GetAxis("RT1") < 0.1) { rt1 = false; }
@@ -36,9 +39,11 @@ public class InputManager : MonoBehaviour {
         angle1 = Mathf.Atan2(vert1, hor1) * Mathf.Rad2Deg;
 
         // Player 2
+        shoot2 = false;
         if (Input.GetKeyDown(KeyCode.Joystick2Button7) || (Input.GetAxis("RT2") < -0.1 && !rt2))
         {
             rt2 = true;
+            shoot2 = true;
             Debug.Log("Shoot 2");
         }
         if (Input.GetAxis("RT2") > -0.1 && Input.GetAxis("RT2") < 0.1) { rt2 = false; }
@@ -46,8 +51,10 @@ public class InputManager : MonoBehaviour {
         vert2 = Input.GetAxis("V2");
         angle2 = Mathf.Atan2(vert2, hor2) * Mathf.Rad2Deg;
         // Player 3
+        shoot3 = false;
         if (Input.GetKeyDown(KeyCode.Joystick3Button7) || (Input.GetAxis("RT3") < -0.1 && !rt3))
         {
+            shoot3 = true;
             rt3 = true;
             Debug.Log("Shoot 3");
         }
@@ -56,14 +63,50 @@ public class InputManager : MonoBehaviour {
         vert3 = Input.GetAxis("V3");
         angle3 = Mathf.Atan2(vert3, hor3) * Mathf.Rad2Deg;
         // Player 4
+        shoot4 = false;
         if (Input.GetKeyDown(KeyCode.Joystick4Button7) || (Input.GetAxis("RT4") < -0.1 && !rt4))
         {
             rt4 = true;
+            shoot4 = true;
             Debug.Log("Shoot 4");
         }
         if (Input.GetAxis("RT4") > -0.1 && Input.GetAxis("RT4") < 0.1) { rt4 = false; }
         hor4 = Input.GetAxis("H4");
         vert4 = Input.GetAxis("V4");
         angle4 = Mathf.Atan2(vert4, hor4) * Mathf.Rad2Deg;
+    }
+
+    public bool GetShoot(string id)
+    {
+        switch (id)
+        {
+            case "1":
+                return shoot1;
+            case "2":
+                return shoot2;
+            case "3":
+                return shoot3;
+            case "4":
+                return shoot4;
+            default:
+                return false;
+        }
+    }
+
+    public float GetAngle(string id)
+    {
+        switch (id)
+        {
+            case "1":
+                return angle1;
+            case "2":
+                return angle2;
+            case "3":
+                return angle3;
+            case "4":
+                return angle4;
+            default:
+                return 0;
+        }
     }
 }
