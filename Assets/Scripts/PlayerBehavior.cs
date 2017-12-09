@@ -32,25 +32,26 @@ public class PlayerBehavior : MonoBehaviour {
         body = this.GetComponent<Rigidbody>();
         startPosition = this.transform.position;
         playerColor = GetComponentInChildren<SpriteRenderer>().color;
-
-
     }
 	
 	// Update is called once per frame
 	void Update () {
-        checkMaxVelocity();
-        slowDown();
-        if (keyBoard && Input.GetKeyDown(KeyCode.Space))
+
+        if (MapManager.current.finished)
         {
-            Shoot();
+            checkMaxVelocity();
+            slowDown();
+            if (keyBoard && Input.GetKeyDown(KeyCode.Space))
+            {
+                Shoot();
+            }
+            else if (!keyBoard && InputManager.current.GetShoot("" + playerID))
+            {
+                Shoot();
+            }
         }
-        else if (!keyBoard && InputManager.current.GetShoot("" + playerID)) {
-            Shoot();
-        }
 
-
-
-            if (keyBoard)
+        if (keyBoard)
         {
             if (Input.GetKey(KeyCode.LeftArrow))
                 this.transform.Rotate(new Vector3(0, -rotationSpeed * Time.deltaTime, 0));
