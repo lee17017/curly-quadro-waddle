@@ -18,6 +18,12 @@ public class MapManager : MonoBehaviour {
     {
         mapTiles = new GameObject[size, (int)(size/16f*9)];
 
+        Debug.Log(Settings.p1);
+        Debug.Log(Settings.p2);
+
+        Debug.Log(Settings.p3);
+        Debug.Log(Settings.p4);
+
         CreateMap();
     }
 	
@@ -28,7 +34,7 @@ public class MapManager : MonoBehaviour {
         // Size Changed
         if(oldSize != size)
         {
-            CreateMap();
+            //CreateMap();
         }
 	}
 

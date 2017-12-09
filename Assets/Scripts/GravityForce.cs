@@ -6,17 +6,16 @@ public class GravityForce : MonoBehaviour {
 
     // public Rigidbody2D rb;
     // public GameObject circle;
-    private float thrust;
+    public float thrust;
     private float radius;
-    private Vector2 center;
+    private Vector3 center;
 
 
     void Start()
     {
         center = transform.position;
-        radius = GetComponent<CircleCollider2D>().radius;
-        thrust = 0;
-
+        radius = GetComponent<SphereCollider>().radius*transform.localScale.z;
+        Debug.Log(radius);
         // rb = GetComponent<Rigidbody2D>();
         Debug.Log("started");
     }
@@ -30,25 +29,40 @@ public class GravityForce : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        transform.Translate(Vector3.left * Time.deltaTime);
+        // transform.Translate(Vector3.left * Time.deltaTime);
 	}
 
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerStay(Collider other)
     {
-        GameObject colObj = collision.gameObject;
-        Debug.Log("collided");
+        GameObject colObj = other.gameObject;
+        float massOther = 1f;
+        float massHole = thrust;
 
-        Vector2 colPos = colObj.transform.position;
-        Vector2 forceVec = new Vector2(center.x - colPos.x, center.y - colPos.y);
+        if (other.tag == "Player")
+        {
+          //  Debug.Log("collided");
 
-        Debug.Log("Force: " + forceVec);
-        thrust = forceVec.magnitude / 9;
-        colObj.GetComponent<Rigidbody2D>().AddForce(forceVec.normalized * thrust);
-        
+            Vector3 colPos = colObj.transform.position;
+            Vector3 center = transform.position; // delete later
+            Vector3 forceVec = new Vector3(center.x - colPos.x, 0, center.z - colPos.z);
+            float distance = forceVec.magnitude;
+            if (distance < 0.1f)
+                distance = 0.1f;
+                //    Debug.Log("Forcevector: " + forceVec);
+
+            // Richtungsvektor * Kraft * Prozentuale Nähe zum center
+            // colObj.GetComponent<Rigidbody>().AddForce(forceVec.normalized * thrust * (1 - (forceVec.magnitude / radius)));
+
+            colObj.GetComponent<Rigidbody>().AddForce(massOther*massHole/(distance*distance)* forceVec.normalized);
+
+          //  Debug.Log("calculated Force: " + (1 - (distance / radius)));
 
 
-        // rb.AddForce(transform.up * thrust);
+            // rb.AddForce(transform.up * thrust);
+        }
+
+
     }
 
 
