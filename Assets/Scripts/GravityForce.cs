@@ -14,7 +14,7 @@ public class GravityForce : MonoBehaviour {
     void Start()
     {
         center = transform.position;
-        radius = GetComponent<CircleCollider2D>().radius;
+        radius = GetComponent<SphereCollider>().radius;
         thrust = 0;
 
         // rb = GetComponent<Rigidbody2D>();
@@ -30,11 +30,11 @@ public class GravityForce : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        transform.Translate(Vector3.left * Time.deltaTime);
+        // transform.Translate(Vector3.left * Time.deltaTime);
 	}
 
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerStay(Collider collision)
     {
         GameObject colObj = collision.gameObject;
         Debug.Log("collided");
@@ -44,7 +44,7 @@ public class GravityForce : MonoBehaviour {
 
         Debug.Log("Force: " + forceVec);
         thrust = forceVec.magnitude / 9;
-        colObj.GetComponent<Rigidbody2D>().AddForce(forceVec.normalized * thrust);
+        colObj.GetComponent<Rigidbody>().AddForce(forceVec.normalized * thrust);
         
 
 
