@@ -12,7 +12,9 @@ public class MapManager : MonoBehaviour {
     public GameObject[,] mapTiles;
 
     public Material tileMaterial;
+    public Material hillMaterial;
     public Color tileColor;
+    public Color hillColor;
 
     public SpriteRenderer p1, p2, p3, p4;
 
@@ -76,6 +78,14 @@ public class MapManager : MonoBehaviour {
             }
         }
 
+        for(int x=9; x<=17; x++)
+        {
+            for(int y=6; y<=8; y++)
+            {
+                mapTiles[x, y].GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.white);
+            }
+        }
+
         RevealMap();
     }
 
@@ -94,13 +104,16 @@ public class MapManager : MonoBehaviour {
     IEnumerator GlowIntro()
     {
         Color glow = Color.black;
+        Color glowHill = Color.black;
 
         float timer = 0;
         while (timer < 2f)
         {
             glow = tileColor * timer;
+            glowHill = hillColor * timer;
             timer += Time.deltaTime/3f;
             tileMaterial.SetColor("_EmissionColor", glow);
+            hillMaterial.SetColor("_EmissionColor", glowHill);
             yield return null;
         }
     }

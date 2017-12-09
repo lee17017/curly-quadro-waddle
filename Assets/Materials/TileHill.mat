@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: TileTest
+  m_Name: TileHill
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
@@ -85,7 +85,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0.014705896, g: 0, b: 0, a: 1}
-    - _EmissionColor: {r: 1.8610624, g: 0.9994593, b: 1.9989187, a: 1.9989187}
+    - _EmissionColor: {r: 1.9984523, g: 1.9984523, b: 1.9984523, a: 1.9984523}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
