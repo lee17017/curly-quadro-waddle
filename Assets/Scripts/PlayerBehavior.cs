@@ -15,9 +15,12 @@ public class PlayerBehavior : MonoBehaviour {
     public float slowingFactor; //how fast your velocity gets reduced towards 0 
     public float maxVelocity;
     public float stunDuration;
+    public float shootHoldCooldown;
+    public float shootDownCooldown;
     public Vector3 startPosition;
-    enum PlayerState {Normal, Hit};
+    enum PlayerState {Normal, Cooldown, Hit};
     private Color playerColor;
+    private float shootTimer;
     public Color playerColorStun;
     PlayerState state;
 
@@ -32,25 +35,28 @@ public class PlayerBehavior : MonoBehaviour {
         body = this.GetComponent<Rigidbody>();
         startPosition = this.transform.position;
         playerColor = GetComponentInChildren<SpriteRenderer>().color;
-
-
     }
 	
 	// Update is called once per frame
 	void Update () {
         checkMaxVelocity();
         slowDown();
+        shootTimer += Time.deltaTime;
         if (keyBoard && Input.GetKeyDown(KeyCode.Space))
         {
-            Shoot();
+            Shoot(shootDownCooldown);
         }
-        else if (!keyBoard && InputManager.current.GetShoot("" + playerID)) {
-            Shoot();
+        else if (!keyBoard && InputManager.current.GetShoot("" + playerID))
+        {
+            Shoot(shootDownCooldown);
+        }
+        else if (InputManager.current.GetShootDown("" + playerID) && state != PlayerState.Cooldown) {
+            Shoot(shootHoldCooldown);
         }
 
 
 
-            if (keyBoard)
+        if (keyBoard)
         {
             if (Input.GetKey(KeyCode.LeftArrow))
                 this.transform.Rotate(new Vector3(0, -rotationSpeed * Time.deltaTime, 0));
@@ -62,14 +68,14 @@ public class PlayerBehavior : MonoBehaviour {
     }
 
     //Apply force towards Z-direction of Player and spawn Projectile in other direction
-    void Shoot()
+    void Shoot(float timeLimit)
     {
-        if (state == PlayerState.Normal)
+        if (state != PlayerState.Hit && shootTimer>timeLimit)
         {
+            shootTimer = 0;
             body.AddRelativeForce(Vector3.forward * forceMultiplicator / Time.deltaTime);
             float xOffset = Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180) * this.transform.localScale.x;
             float zOffset = Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180) * this.transform.localScale.z;
-            
             GameObject temp = (GameObject)Instantiate(projectile, new Vector3(transform.position.x - xOffset, transform.position.y, transform.position.z - zOffset), transform.rotation);
             temp.GetComponentInChildren<SpriteRenderer>().color = playerColor;
             temp.GetComponent<ProjectileBehavior>().playerNmb = playerID;
@@ -130,6 +136,9 @@ public class PlayerBehavior : MonoBehaviour {
 
         }
         GetComponentInChildren<SpriteRenderer>().color = playerColor;
-        state = PlayerState.Normal;
+        if(state == PlayerState.Hit)
+            state = PlayerState.Normal;
     }
+
+
 }

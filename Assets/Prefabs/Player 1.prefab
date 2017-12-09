@@ -162,7 +162,9 @@ MonoBehaviour:
   slowingFactor: 0.05
   maxVelocity: 10
   stunDuration: 1
+  shootCooldown: 0.3
   startPosition: {x: 0, y: 0, z: 0}
+  playerColorStun: {r: 0.28676468, g: 0, b: 0, a: 1}
 --- !u!212 &212578427322713502
 SpriteRenderer:
   m_ObjectHideFlags: 1
