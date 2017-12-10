@@ -12,5 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Game.unity
     guid: f421a7455e208e248b3223f34f0bfdfa
   - enabled: 1
-    path: Assets/Scenes/LiouTest.unity
-    guid: f0b144c6785321146b3fb0202369eaf3
+    path: Assets/Scenes/highscore.unity
+    guid: 5e4290f80aca39e42a814457613f08ab
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000

@@ -7,12 +7,14 @@ public class GravityForce : MonoBehaviour {
     // public Rigidbody2D rb;
     // public GameObject circle;
     public float thrust;
+    public bool end;
     private float radius;
     private Vector3 center;
-
+    public int warpID;
 
     void Start()
     {
+        end = false;
         center = transform.position;
         radius = GetComponent<SphereCollider>().radius * transform.localScale.z;
         //Debug.Log(radius);
@@ -57,8 +59,15 @@ public class GravityForce : MonoBehaviour {
                 // Richtungsvektor * Kraft * Prozentuale Nähe zum center
                 // colObj.GetComponent<Rigidbody>().AddForce(forceVec.normalized * thrust * (1 - (forceVec.magnitude / radius)));
 
-                colObj.GetComponent<Rigidbody>().AddForce(massOther * massHole / (distance * distance) * forceVec.normalized);
-
+                if (!end)
+                    colObj.GetComponent<Rigidbody>().AddForce(massOther * massHole / (distance * distance) * forceVec.normalized);
+                else {
+                    if(warpID == 0 && colObj.transform.position.x<13)
+                        colObj.GetComponent<Rigidbody>().AddForce(200f * forceVec.normalized);
+                    else if(warpID == 1 && colObj.transform.position.x >= 13)
+                        colObj.GetComponent<Rigidbody>().AddForce(200f * forceVec.normalized);
+                }
+                    
                 //  Debug.Log("calculated Force: " + (1 - (distance / radius)));
 
 

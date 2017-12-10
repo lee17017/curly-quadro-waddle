@@ -64,14 +64,14 @@ public class PlayerBehavior : MonoBehaviour {
             }
         }
 
-        if (keyBoard)
+        if (keyBoard && state != PlayerState.End)
         {
             if (Input.GetKey(KeyCode.LeftArrow))
                 this.transform.Rotate(new Vector3(0, -rotationSpeed * Time.deltaTime, 0));
             else if (Input.GetKey(KeyCode.RightArrow))
                 this.transform.Rotate(new Vector3(0, rotationSpeed * Time.deltaTime, 0));
         }
-        else
+        else if(state != PlayerState.End)
             transform.eulerAngles = new Vector3(0, InputManager.current.GetAngle(""+playerID)-90, 0);
     }
     void FixedUpdate()
