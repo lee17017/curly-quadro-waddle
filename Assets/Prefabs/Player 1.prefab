@@ -160,7 +160,8 @@ MonoBehaviour:
   rotationSpeed: 100
   projectile: {fileID: 1512346958117358, guid: 5d9a08698bf0ad5479df4a138522160c, type: 2}
   slowingFactor: 0.05
-  maxVelocity: 10
+  maxVelocityZ: 4
+  maxVelocityX: 5
   stunDuration: 0
   shootHoldCooldown: 0.3
   shootDownCooldown: 0.05

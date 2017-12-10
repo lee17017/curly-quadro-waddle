@@ -193,7 +193,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 1972860396185064, guid: aae328f29bd5fba459f30abe2b1338c7, type: 2}
   tileMaterial: {fileID: 2100000, guid: e3cec9e7bcfdf564ba9056f5f400b1ea, type: 2}
+  hillMaterial: {fileID: 0}
   tileColor: {r: 0.93103456, g: 0.5, b: 1, a: 1}
+  hillColor: {r: 0, g: 0, b: 0, a: 0}
   p1: {fileID: 2015539926}
   p2: {fileID: 1227965766}
   p3: {fileID: 1414956359}
@@ -900,7 +902,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1295735577
 MonoBehaviour:
   m_ObjectHideFlags: 0
