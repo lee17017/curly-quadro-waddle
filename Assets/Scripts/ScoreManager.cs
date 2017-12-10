@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class ScoreManager {
+    private static float musikTimer=0;
     public static float[] scores = new float[4];
     public static int[] ranking = new int[4];
     public static void reset() {
@@ -68,6 +69,20 @@ public static class ScoreManager {
         return false;
     }
 
+    public static float getMusikTimer()
+    {
+        return musikTimer;
+    }
 
-
+    public static void setMusikTimer(float time)
+    {
+        if (time < 0)
+        {
+            musikTimer = 0;
+        }
+        else
+        {
+            musikTimer = time;
+        }
+    }
 }
