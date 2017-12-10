@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
     public GameObject[] player = new GameObject[4];
     public GameObject[] warps = new GameObject[2];
+    public GameObject[] scoreList = new GameObject[4];
     public GameObject crown;
     public GameObject text;
     public float timer;
@@ -59,10 +61,30 @@ public class GameManager : MonoBehaviour {
             player[winner].transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
             text.GetComponent<SpriteRenderer>().enabled = true;
             crown.GetComponent<SpriteRenderer>().enabled = true;
+            for (int j = 0; j < scoreList.Length; j++)
+            {
+                scoreList[j].gameObject.active = true;
+                Text[] children = scoreList[j].gameObject.GetComponentsInChildren<Text>();
+                float score = ScoreManager.scores[j];
+                if (score < 0)
+                    score = 0;
+                int value = 1000;
+                for(int i=0;i<4; i++)
+                {
+                    children[i].text = ((int)(score / value))+"";
+                    score = score % value;
+                    value /= 10;
+                }
+            }
+
             for (int i = 0; i < 35; i++) {
                 player[winner].transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
                 text.transform.localScale += new Vector3(0.029f, 0.029f, 0.029f);
                 crown.transform.localScale += new Vector3(0.029f, 0.029f, 0.029f);
+                for(int j=0; j<scoreList.Length; j++)
+                {
+                    scoreList[j].transform.localScale += new Vector3(0.029f, 0.029f, 0.029f);
+                }
                 yield return new WaitForSeconds(0.05f);
             }
 

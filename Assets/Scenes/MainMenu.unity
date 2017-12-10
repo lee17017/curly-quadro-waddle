@@ -336,6 +336,7 @@ MonoBehaviour:
   flickerNumberMin: 0.7
   flickerTitleMin: 0.8
   transitionTime: 3
+  transitionSprite: {fileID: 0}
 --- !u!1 &437220849
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,6 +425,34 @@ MonoBehaviour:
   playerID: 1
   joinedColor: {r: 1, g: 0, b: 0, a: 1}
   notJoinedColor: {r: 0.28676468, g: 0, b: 0, a: 1}
+--- !u!1 &863233110
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 863233111}
+  m_Layer: 0
+  m_Name: MusicBot (DDOL)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &863233111
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 863233110}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.813197, y: -0.012485504, z: 5.308528}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &964043879
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,6 +957,10 @@ MonoBehaviour:
   shoot2: 0
   shoot3: 0
   shoot4: 0
+  shootDown1: 0
+  shootDown2: 0
+  shootDown3: 0
+  shootDown4: 0
   angle1: 0
   angle2: 0
   angle3: 0

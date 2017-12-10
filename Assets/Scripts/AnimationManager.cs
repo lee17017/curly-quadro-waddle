@@ -171,6 +171,7 @@ public class AnimationManager : MonoBehaviour {
 
         yield return new WaitForSeconds(0.25f);
 
+        ScoreManager.reset();
         SceneManager.LoadScene(1);
     }
 
