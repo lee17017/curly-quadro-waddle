@@ -48,6 +48,8 @@ public class MapManager : MonoBehaviour {
         countdownSprite.enabled = false;
 
         CreateMap();
+
+        StartCoroutine(Timer());
     }
 	
 	// Update is called once per frame
@@ -262,5 +264,19 @@ public class MapManager : MonoBehaviour {
         // Calculate Height
         float height = (size/2f) / Mathf.Tan(Mathf.Deg2Rad*60)*1.5f;
         Camera.main.transform.position = new Vector3((size-1) / 2f, height, ((int)(size / 16f * 9) - 1) / 2f);
+    }
+
+    public IEnumerator Timer()
+    {
+        yield return new WaitForSeconds(60);
+
+        Debug.Log("P1: " + ScoreManager.scores[0]);
+        Debug.Log("P2: " + ScoreManager.scores[1]);
+        Debug.Log("P3: " + ScoreManager.scores[2]);
+        Debug.Log("P4: " + ScoreManager.scores[3]);
+
+        ScoreManager.reset();
+
+        StartCoroutine(Timer());
     }
 }

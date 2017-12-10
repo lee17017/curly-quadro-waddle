@@ -32,7 +32,7 @@ public static class ScoreManager {
 
     public static int getRank(int player)
     {
-        return ranking[player];
+        return ranking[player-1];
     }
 
     public static float getHighestScore() {

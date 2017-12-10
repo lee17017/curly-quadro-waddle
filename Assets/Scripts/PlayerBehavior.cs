@@ -127,7 +127,8 @@ public class PlayerBehavior : MonoBehaviour {
             //Debug.Log(velRel);
         }
         else if(other.tag == "Deathzone")
-        { 
+        {
+            ScoreManager.addScore(playerID, -100);
             StartCoroutine("Respawn");
         }
     }
