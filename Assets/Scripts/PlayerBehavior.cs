@@ -21,12 +21,12 @@ public class PlayerBehavior : MonoBehaviour {
     public float respawnTime;
     public float lastHitTime;
     public Vector3 startPosition;
-    enum PlayerState {Normal, Respawn, Hit};
+    public enum PlayerState {Normal, Respawn, Hit, End};
     private Color playerColor;
     private float shootTimer;
     private int lastHitBy = 0;
     public Color playerColorStun;
-    PlayerState state;
+    public PlayerState state;
     private ParticleSystem boostParticles;
 
     void Awake()
@@ -45,7 +45,7 @@ public class PlayerBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (MapManager.current.finished)
+        if (MapManager.current.finished && state != PlayerState.End)
         {
             checkMaxVelocity();
             slowDown();
@@ -124,15 +124,22 @@ public class PlayerBehavior : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player") {
-            //Vector3 velRel = GetComponent<Rigidbody>().velocity-other.GetComponent<Rigidbody>().velocity;
-            //GetComponent<Rigidbody>().velocity -= velRel;
-            //Debug.Log(velRel);
-        }
-        else if(other.tag == "Deathzone")
+        if (state != PlayerState.End)
         {
-            ScoreManager.addScore(playerID, -100);
-            StartCoroutine("Respawn");
+            if (other.tag == "Player")
+            {
+                //Vector3 velRel = GetComponent<Rigidbody>().velocity-other.GetComponent<Rigidbody>().velocity;
+                //GetComponent<Rigidbody>().velocity -= velRel;
+                //Debug.Log(velRel);
+            }
+            else if (other.tag == "Deathzone")
+            {
+                ScoreManager.addScore(playerID, -100);
+                StartCoroutine("Respawn");
+            }
+        }
+        else if (other.tag == "Deathzone") {
+            gameObject.SetActive(false);
         }
     }
 
@@ -189,8 +196,12 @@ public class PlayerBehavior : MonoBehaviour {
         StopCoroutine("Stun");
         GetComponentInChildren<SpriteRenderer>().color = playerColor;
         yield return new WaitForSeconds(respawnTime / 2);
+        if (state == PlayerState.End)
+            gameObject.SetActive(false);
         transform.position = startPosition;
         yield return new WaitForSeconds(respawnTime / 2);
+        if (state == PlayerState.End)
+            gameObject.SetActive(false);
         state = PlayerState.Normal;
     }
 
