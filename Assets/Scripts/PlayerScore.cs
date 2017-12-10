@@ -33,15 +33,15 @@ public class PlayerScore : MonoBehaviour {
         p1score =(int) -(p1Drill.transform.position.y - 27);
         p2score =(int) -(p2Drill.transform.position.y - 27);
 
-        GameManager.current.playerScore1 = (int)p1score;
-        GameManager.current.playerScore2 = (int)p2score;
+        //.current.playerScore1 = (int)p1score;
+        //GameManager.current.playerScore2 = (int)p2score;
 
-        if (!GameManager.current.run)
-        {
-            int[] scores = { (int)p1score, (int)p2score };
-        
-            GameManager.current.winnerScore = Mathf.Max(scores);
-        }
+        //if (!GameManager.current.run)
+        //{
+        //    int[] scores = { (int)p1score, (int)p2score };
+        //
+        //    GameManager.current.winnerScore = Mathf.Max(scores);
+        //}
 	}
 
     public static void writeToBoard(string name, int score)
