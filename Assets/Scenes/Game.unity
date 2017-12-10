@@ -139,9 +139,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 3819395}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c45518fda8cf74541a85a3db15475b5a, type: 3}
+  m_Script: {fileID: 11500000, guid: b3e34435621998a429013cadf771abe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: dd901b6c5cd93a9458bfdc50cd4176f8, type: 3}
+  - {fileID: 21300000, guid: 507ab5ec9fa7e714db9ed7a4ed2bbda7, type: 3}
+  - {fileID: 21300000, guid: 761e8c77576bae94baffd63c982c4e1d, type: 3}
+  - {fileID: 21300000, guid: 24607315529138e429d53419cdf2f875, type: 3}
+  player: {fileID: 406745147}
+  playerID: 1
+  place: 0
 --- !u!212 &3819397
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -313,7 +321,7 @@ MonoBehaviour:
   gameObjects:
   - {fileID: 1574840728050478, guid: 654acfb0f9c21454a8584b76c39e39a2, type: 2}
   - {fileID: 1650653976153074, guid: f437d35f2760d5545bee168e61b08ba5, type: 2}
-  spawn_delay: 1
+  spawn_delay: 0.3
   spawn_difference_between: 0.7
 --- !u!4 &37806231
 Transform:
@@ -669,7 +677,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d81e1ec22f2b2f44d810917d70f3bacc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 734a15da949afac408960268628b872d, type: 3}
   m_Color: {r: 1, g: 0.94411767, b: 0.8602941, a: 0.99935585}
   m_FlipX: 0
   m_FlipY: 0
@@ -677,7 +685,7 @@ SpriteRenderer:
   m_Size: {x: 10.24, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
 --- !u!1 &319984296
 GameObject:
@@ -1109,9 +1117,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 667409826}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c45518fda8cf74541a85a3db15475b5a, type: 3}
+  m_Script: {fileID: 11500000, guid: b3e34435621998a429013cadf771abe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: dd901b6c5cd93a9458bfdc50cd4176f8, type: 3}
+  - {fileID: 21300000, guid: 507ab5ec9fa7e714db9ed7a4ed2bbda7, type: 3}
+  - {fileID: 21300000, guid: 761e8c77576bae94baffd63c982c4e1d, type: 3}
+  - {fileID: 21300000, guid: 24607315529138e429d53419cdf2f875, type: 3}
+  player: {fileID: 134953659}
+  playerID: 3
+  place: 0
 --- !u!212 &667409828
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1201,8 +1217,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 1972860396185064, guid: aae328f29bd5fba459f30abe2b1338c7, type: 2}
-  tileMaterial: {fileID: 2100000, guid: 7c34d536298a28540a005818fe395286, type: 2}
-  hillMaterial: {fileID: 2100000, guid: 4a2fc3461bfe99346a9e132c155e4486, type: 2}
+  tileMaterial: {fileID: 2100000, guid: 27e13be5f34fd8e4381d820f3ebfbedc, type: 2}
+  hillMaterial: {fileID: 2100000, guid: b79f487aa4e8cf24694ceecc3a0ec4b8, type: 2}
   tileColor: {r: 1, g: 0.22794116, b: 0.7550711, a: 1}
   hillColor: {r: 1, g: 0.65, b: 0.125, a: 1}
   p1: {fileID: 2015539926}
@@ -1210,11 +1226,9 @@ MonoBehaviour:
   p3: {fileID: 1414956359}
   p4: {fileID: 222941199}
   countdownSprite: {fileID: 1620188124}
-  countdown2: {fileID: 21300000, guid: 8bd9b282d423a264fa2ebb8befcc571d, type: 3}
-  countdown1: {fileID: 21300000, guid: 6d0d3dcaa51450c4c9d688613325bf30, type: 3}
-  countdownGo: {fileID: 21300000, guid: 9235b8ad275dcff41a0649bebf4acbe1, type: 3}
-  placePrefab: {fileID: 1429263114316800, guid: 61c4b30c1f63d3542aaea883d431c221,
-    type: 2}
+  countdown2: {fileID: 21300000, guid: 664799da391143644826d873a2a35bb9, type: 3}
+  countdown1: {fileID: 21300000, guid: 652e0191f7b272f499889caef4dc1f63, type: 3}
+  countdownGo: {fileID: 21300000, guid: fcb5b5428e6db654fbf07a93dde60433, type: 3}
   warpColor: {r: 0, g: 0, b: 0, a: 0}
   blueWarpColor: {r: 0, g: 0, b: 0, a: 0}
   finished: 0
@@ -1532,9 +1546,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1122285586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c7fac949e86ce641aeb94659e542c66, type: 3}
+  m_Script: {fileID: 11500000, guid: d9555828d02041b4db76fff4fdb5fa87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  king: {fileID: 0}
+  p1: {fileID: 406745147}
+  p2: {fileID: 171648438}
+  p3: {fileID: 134953659}
+  p4: {fileID: 1048316400}
 --- !u!4 &1122285588
 Transform:
   m_ObjectHideFlags: 0
@@ -1584,7 +1603,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1e7e48ca22385c24297a0fd7d465d02a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5a205778c8bc87148bad30e0d7dce84c, type: 3}
   m_Color: {r: 0.33088237, g: 0.75081146, b: 1, a: 0.9994572}
   m_FlipX: 0
   m_FlipY: 0
@@ -1592,7 +1611,7 @@ SpriteRenderer:
   m_Size: {x: 10.24, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
 --- !u!212 &1414956359
 SpriteRenderer:
@@ -1629,7 +1648,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 76721d629778c3045a8e4a9d09957fb0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bee5e674b1396d646802ba65179c0794, type: 3}
   m_Color: {r: 0.5131846, g: 1, b: 0.44852942, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1637,7 +1656,7 @@ SpriteRenderer:
   m_Size: {x: 10.24, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
 --- !u!1001 &1446807479
 Prefab:
@@ -1713,9 +1732,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1480809445}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c45518fda8cf74541a85a3db15475b5a, type: 3}
+  m_Script: {fileID: 11500000, guid: b3e34435621998a429013cadf771abe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: dd901b6c5cd93a9458bfdc50cd4176f8, type: 3}
+  - {fileID: 21300000, guid: 507ab5ec9fa7e714db9ed7a4ed2bbda7, type: 3}
+  - {fileID: 21300000, guid: 761e8c77576bae94baffd63c982c4e1d, type: 3}
+  - {fileID: 21300000, guid: 24607315529138e429d53419cdf2f875, type: 3}
+  player: {fileID: 1048316400}
+  playerID: 4
+  place: 0
 --- !u!212 &1480809447
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2008,8 +2035,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameObjects:
   - {fileID: 1574840728050478, guid: 654acfb0f9c21454a8584b76c39e39a2, type: 2}
-  - {fileID: 1650653976153074, guid: f437d35f2760d5545bee168e61b08ba5, type: 2}
-  spawn_delay: 1
+  spawn_delay: 0.3
   spawn_difference_between: 0.7
 --- !u!4 &1532446501
 Transform:
@@ -2062,7 +2088,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8de72790f491d99498eb9ecd7624cb04, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4e0351e112b7d9245ba2961da11ad695, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2070,7 +2096,7 @@ SpriteRenderer:
   m_Size: {x: 10, y: 10}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
 --- !u!1 &1674559925
 GameObject:
@@ -2263,9 +2289,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1918093291}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c45518fda8cf74541a85a3db15475b5a, type: 3}
+  m_Script: {fileID: 11500000, guid: b3e34435621998a429013cadf771abe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: dd901b6c5cd93a9458bfdc50cd4176f8, type: 3}
+  - {fileID: 21300000, guid: 507ab5ec9fa7e714db9ed7a4ed2bbda7, type: 3}
+  - {fileID: 21300000, guid: 761e8c77576bae94baffd63c982c4e1d, type: 3}
+  - {fileID: 21300000, guid: 24607315529138e429d53419cdf2f875, type: 3}
+  player: {fileID: 171648438}
+  playerID: 2
+  place: 0
 --- !u!212 &1918093293
 SpriteRenderer:
   m_ObjectHideFlags: 0

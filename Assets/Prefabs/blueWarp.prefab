@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4001460332892282}
   - component: {fileID: 212850408545795300}
-  - component: {fileID: 114970518598720316}
+  - component: {fileID: 114592167221504702}
   m_Layer: 0
   m_Name: blueWarp
   m_TagString: Untagged
@@ -41,7 +41,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114970518598720316
+--- !u!114 &114592167221504702
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -49,10 +49,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1574840728050478}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed7382c05e4468448a54e6ea7af5689c, type: 3}
+  m_Script: {fileID: 11500000, guid: a6aad61c167195c4fa393b17f4c78038, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.005
+  speed: 0.01
 --- !u!212 &212850408545795300
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -6,6 +6,12 @@ public class warpMinifier : MonoBehaviour {
 
     [Range (0f, 1f)]
     public float speed;	
+
+    void Awake()
+    {
+        GetComponent<SpriteRenderer>().color = MapManager.current.blueWarpColor;
+    }
+
 	// Update is called once per frame
 	void Update () {
 		if(this.transform.localScale.magnitude >= 0.05)

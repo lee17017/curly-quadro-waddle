@@ -21,8 +21,6 @@ public class MapManager : MonoBehaviour {
     public SpriteRenderer countdownSprite;
 
     public Sprite countdown2, countdown1, countdownGo;
-
-    public GameObject placePrefab;
     
     public Color warpColor, blueWarpColor;
 
