@@ -42,6 +42,15 @@ public class GameManager : MonoBehaviour {
 
             once = false;
             int winner = ScoreManager.getWinner() - 1;
+
+            /*
+            int count = 0;
+            if (Settings.IsActive(1)) { count++; }
+            if (Settings.IsActive(2)) { count++; }
+            if (Settings.IsActive(3)) { count++; }
+            if (Settings.IsActive(4)) { count++; }
+            */
+
             for (int i = 0; i < 4; i++)
             {
                 player[i].GetComponent<SphereCollider>().isTrigger = true;
@@ -63,17 +72,20 @@ public class GameManager : MonoBehaviour {
             crown.GetComponent<SpriteRenderer>().enabled = true;
             for (int j = 0; j < scoreList.Length; j++)
             {
-                scoreList[j].gameObject.SetActive(true);
-                Text[] children = scoreList[j].gameObject.GetComponentsInChildren<Text>();
-                float score = ScoreManager.scores[j];
-                if (score < 0)
-                    score = 0;
-                int value = 1000;
-                for(int i=0;i<4; i++)
+                if (Settings.IsActive(j + 1))
                 {
-                    children[i].text = ((int)(score / value))+"";
-                    score = score % value;
-                    value /= 10;
+                    scoreList[j].gameObject.SetActive(true);
+                    Text[] children = scoreList[j].gameObject.GetComponentsInChildren<Text>();
+                    float score = ScoreManager.scores[j];
+                    if (score < 0)
+                        score = 0;
+                    int value = 1000;
+                    for (int i = 0; i < 4; i++)
+                    {
+                        children[i].text = ((int)(score / value)) + "";
+                        score = score % value;
+                        value /= 10;
+                    }
                 }
             }
 

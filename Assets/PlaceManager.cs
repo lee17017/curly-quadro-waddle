@@ -14,6 +14,11 @@ public class PlaceManager : MonoBehaviour {
 
     public int place;
 
+    void Awake()
+    {
+        gameObject.SetActive(Settings.IsActive(playerID));
+    }
+
 	// Use this for initialization
 	void Start () {
         spriteRenderer = GetComponent<SpriteRenderer>();

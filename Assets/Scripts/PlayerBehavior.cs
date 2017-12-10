@@ -32,6 +32,10 @@ public class PlayerBehavior : MonoBehaviour {
 
     void Awake()
     {
+        if (!Settings.IsActive(playerID))
+        {
+            ScoreManager.addScore(playerID, -1000001);
+        }
         gameObject.SetActive(Settings.IsActive(playerID));
         boostParticles = gameObject.transform.GetChild(1).GetComponent<ParticleSystem>();
         collisionSound = gameObject.transform.GetComponent<AudioSource>();
