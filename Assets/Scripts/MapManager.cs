@@ -23,6 +23,8 @@ public class MapManager : MonoBehaviour {
     public Sprite countdown2, countdown1, countdownGo;
 
     public GameObject placePrefab;
+    
+    public Color warpColor, blueWarpColor;
 
     // Gridsize
     private int size = 27;
@@ -109,12 +111,17 @@ public class MapManager : MonoBehaviour {
     {
         Color glow = Color.black;
         Color glowHill = Color.black;
+        blueWarpColor = Color.black;
+        warpColor = Color.black;
+
 
         float timer = 0;
         while (timer < 2f)
         {
             glow = tileColor * timer;
             glowHill = hillColor * timer;
+            warpColor = Color.white * timer;
+            blueWarpColor = Color.white * timer;
             timer += Time.deltaTime/3f;
             tileMaterial.SetColor("_EmissionColor", glow);
             hillMaterial.SetColor("_EmissionColor", glowHill);

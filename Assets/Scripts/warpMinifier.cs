@@ -11,6 +11,8 @@ public class warpMinifier : MonoBehaviour {
 		if(this.transform.localScale.magnitude >= 0.05)
         {
             this.transform.localScale -= new Vector3(speed, speed, speed);
+
+            GetComponent<SpriteRenderer>().color = MapManager.current.blueWarpColor;
         }
         else
         {

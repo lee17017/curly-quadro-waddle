@@ -29,6 +29,7 @@ public class GravityForce : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         // transform.Translate(Vector3.left * Time.deltaTime);
+        GetComponentInChildren<SpriteRenderer>().color = MapManager.current.warpColor;
     }
 
 
