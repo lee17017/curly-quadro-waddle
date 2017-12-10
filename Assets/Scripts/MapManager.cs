@@ -18,9 +18,9 @@ public class MapManager : MonoBehaviour {
 
     public SpriteRenderer p1, p2, p3, p4;
 
-    public SpriteRenderer countdownSprite;
+    public SpriteRenderer countdownSprite, countdownEndSprite;
 
-    public Sprite countdown2, countdown1, countdownGo;
+    public Sprite countdown2, countdown1, countdownGo, countdown3, countdownTime, countdownOverTime;
     
     public Color warpColor, blueWarpColor;
 
@@ -46,6 +46,7 @@ public class MapManager : MonoBehaviour {
         p4.enabled = false;
 
         countdownSprite.enabled = false;
+        countdownEndSprite.enabled = false;
 
         CreateMap();
 
@@ -259,6 +260,223 @@ public class MapManager : MonoBehaviour {
                 break;
             }
             countdownSprite.transform.localScale -= Vector3.one * Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    public IEnumerator CountDownEnd()
+    {
+
+        float time = 0;
+
+        countdownEndSprite.enabled = true;
+        
+        // Ten
+
+        countdownEndSprite.transform.localScale = Vector3.one;
+
+        while (countdownEndSprite.transform.localScale.x > 0.05f)
+        {
+            time += Time.deltaTime;
+            //if (time >= 1) { break; }
+            if (countdownEndSprite.transform.localScale.x <= (Vector3.one * Time.deltaTime).x)
+            {
+                countdownEndSprite.enabled = false;
+                break;
+            }
+            countdownEndSprite.transform.localScale -= Vector3.one * Time.deltaTime / 1.5f;
+            yield return null;
+        }
+
+        countdownEndSprite.enabled = false;
+
+        yield return new WaitForSeconds(10 - 3 - time);
+
+        // THREE
+
+        time = 0;
+
+        countdownEndSprite.enabled = true;
+
+        countdownEndSprite.sprite = countdown3;
+
+        countdownEndSprite.transform.localScale = Vector3.one;
+
+        while (countdownEndSprite.transform.localScale.x > 0)
+        {
+            time += Time.deltaTime;
+            if (time >= 1) { break; }
+            if (countdownEndSprite.transform.localScale.x <= (Vector3.one * Time.deltaTime).x)
+            {
+                countdownEndSprite.enabled = false;
+                break;
+            }
+            countdownEndSprite.transform.localScale -= Vector3.one * Time.deltaTime / 1.5f;
+            yield return null;
+        }
+
+        // TWO
+
+        time = 0;
+
+        countdownEndSprite.sprite = countdown2;
+
+        countdownEndSprite.transform.localScale = Vector3.one;
+
+        while (countdownEndSprite.transform.localScale.x > 0)
+        {
+            time += Time.deltaTime;
+            if (time >= 1) { break; }
+            if (countdownEndSprite.transform.localScale.x <= (Vector3.one * Time.deltaTime).x)
+            {
+                countdownEndSprite.enabled = false;
+                break;
+            }
+            countdownEndSprite.transform.localScale -= Vector3.one * Time.deltaTime / 1.5f;
+            yield return null;
+        }
+
+        // ONE
+        time = 0;
+        countdownEndSprite.sprite = countdown1;
+
+        countdownEndSprite.transform.localScale = Vector3.one;
+
+        while (countdownEndSprite.transform.localScale.x > 0)
+        {
+            time += Time.deltaTime;
+            if (time >= 1) { break; }
+            if (countdownEndSprite.transform.localScale.x <= (Vector3.one * Time.deltaTime).x)
+            {
+                countdownEndSprite.enabled = false;
+                break;
+            }
+            countdownEndSprite.transform.localScale -= Vector3.one * Time.deltaTime / 1.5f;
+            yield return null;
+        }
+
+        // GO
+        if (ScoreManager.draw())
+        {
+            countdownEndSprite.sprite = countdownOverTime;
+            StartCoroutine(CountDownOvertime());
+        }
+        else
+        {
+            countdownEndSprite.sprite = countdownTime;
+        }
+        
+
+        countdownEndSprite.transform.localScale = Vector3.one;
+
+        finished = true;
+
+        while (countdownEndSprite.transform.localScale.x > 0)
+        {
+            if (countdownEndSprite.transform.localScale.x <= (Vector3.one * Time.deltaTime).x)
+            {
+                countdownEndSprite.enabled = false;
+                break;
+            }
+            countdownEndSprite.transform.localScale -= Vector3.one * Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    public IEnumerator CountDownOvertime()
+    {
+
+        float time = 0;
+
+        yield return new WaitForSeconds(10 - 3);
+
+        // THREE
+
+        time = 0;
+
+        countdownEndSprite.enabled = true;
+
+        countdownEndSprite.sprite = countdown3;
+
+        countdownEndSprite.transform.localScale = Vector3.one;
+
+        while (countdownEndSprite.transform.localScale.x > 0)
+        {
+            time += Time.deltaTime;
+            if (time >= 1) { break; }
+            if (countdownEndSprite.transform.localScale.x <= (Vector3.one * Time.deltaTime).x)
+            {
+                countdownEndSprite.enabled = false;
+                break;
+            }
+            countdownEndSprite.transform.localScale -= Vector3.one * Time.deltaTime / 1.5f;
+            yield return null;
+        }
+
+        // TWO
+
+        time = 0;
+
+        countdownEndSprite.sprite = countdown2;
+
+        countdownEndSprite.transform.localScale = Vector3.one;
+
+        while (countdownEndSprite.transform.localScale.x > 0)
+        {
+            time += Time.deltaTime;
+            if (time >= 1) { break; }
+            if (countdownEndSprite.transform.localScale.x <= (Vector3.one * Time.deltaTime).x)
+            {
+                countdownEndSprite.enabled = false;
+                break;
+            }
+            countdownEndSprite.transform.localScale -= Vector3.one * Time.deltaTime / 1.5f;
+            yield return null;
+        }
+
+        // ONE
+        time = 0;
+        countdownEndSprite.sprite = countdown1;
+
+        countdownEndSprite.transform.localScale = Vector3.one;
+
+        while (countdownEndSprite.transform.localScale.x > 0)
+        {
+            time += Time.deltaTime;
+            if (time >= 1) { break; }
+            if (countdownEndSprite.transform.localScale.x <= (Vector3.one * Time.deltaTime).x)
+            {
+                countdownEndSprite.enabled = false;
+                break;
+            }
+            countdownEndSprite.transform.localScale -= Vector3.one * Time.deltaTime / 1.5f;
+            yield return null;
+        }
+
+
+        // GO
+        if (ScoreManager.draw())
+        {
+            countdownEndSprite.sprite = countdownOverTime;
+            StartCoroutine(CountDownOvertime());
+        }
+        else
+        {
+            countdownEndSprite.sprite = countdownTime;
+        }
+
+        countdownEndSprite.transform.localScale = Vector3.one;
+
+        finished = true;
+
+        while (countdownEndSprite.transform.localScale.x > 0)
+        {
+            if (countdownEndSprite.transform.localScale.x <= (Vector3.one * Time.deltaTime).x)
+            {
+                countdownEndSprite.enabled = false;
+                break;
+            }
+            countdownEndSprite.transform.localScale -= Vector3.one * Time.deltaTime;
             yield return null;
         }
     }

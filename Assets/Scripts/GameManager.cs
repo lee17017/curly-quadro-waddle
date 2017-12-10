@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour {
     public GameObject text;
     public float timer;
     private bool once;
+
+    private static bool countingDown;
 	// Use this for initialization
 	void Start () {
         once = true;
@@ -20,6 +22,12 @@ public class GameManager : MonoBehaviour {
         timer -= Time.deltaTime;
         if (timer <= 0 && once)
             StartCoroutine("End");
+
+        if(timer <= 10 && !countingDown)
+        {
+            StartCoroutine(MapManager.current.CountDownEnd());
+            countingDown = true;
+        }
 	}
     IEnumerator End() {
         if (ScoreManager.draw())
@@ -29,6 +37,7 @@ public class GameManager : MonoBehaviour {
         }
         else
         {
+
             once = false;
             int winner = ScoreManager.getWinner() - 1;
             for (int i = 0; i < 4; i++)
