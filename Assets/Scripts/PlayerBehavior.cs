@@ -28,11 +28,13 @@ public class PlayerBehavior : MonoBehaviour {
     public Color playerColorStun;
     public PlayerState state;
     private ParticleSystem boostParticles;
+    private AudioSource collisionSound;
 
     void Awake()
     {
         gameObject.SetActive(Settings.IsActive(playerID));
         boostParticles = gameObject.transform.GetChild(1).GetComponent<ParticleSystem>();
+        collisionSound = gameObject.transform.GetComponent<AudioSource>();
     }
 
 	// Use this for initialization
@@ -93,8 +95,6 @@ public class PlayerBehavior : MonoBehaviour {
             if (boostParticles != null)
             {
                 boostParticles.Play();
-                Debug.Log("Particles!");
-                Debug.Log(boostParticles.isPlaying);
             }
         }
     }
@@ -161,6 +161,13 @@ public class PlayerBehavior : MonoBehaviour {
             Destroy(other.gameObject);
             if (state == PlayerState.Normal)
                 StartCoroutine("Stun");
+        }
+        else if (other.tag == "Player")
+        {
+            if (collisionSound != null && !collisionSound.isPlaying)
+            {
+                collisionSound.Play();
+            }
         }
     }
 
