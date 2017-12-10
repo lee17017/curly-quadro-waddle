@@ -29,6 +29,8 @@ public class PlayerBehavior : MonoBehaviour {
     public PlayerState state;
     private ParticleSystem boostParticles;
     private AudioSource collisionSound;
+    public GameObject woarbSound;
+
 
     void Awake()
     {
@@ -143,7 +145,9 @@ public class PlayerBehavior : MonoBehaviour {
             }
             else if (other.tag == "Deathzone")
             {
+               
                 ScoreManager.addScore(playerID, -100);
+                
                 StartCoroutine("Respawn");
             }
         }
@@ -206,6 +210,7 @@ public class PlayerBehavior : MonoBehaviour {
     }
 
     IEnumerator Respawn() {
+        GameObject temp = GameObject.Instantiate(woarbSound);
         state = PlayerState.Respawn;
         GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
         transform.position = startPosition + new Vector3(0, 5+playerID*2, 1000);
@@ -219,6 +224,7 @@ public class PlayerBehavior : MonoBehaviour {
         if (state == PlayerState.End)
             gameObject.SetActive(false);
         state = PlayerState.Normal;
+        Destroy(temp);
     }
 
     IEnumerator resetLastHit()
