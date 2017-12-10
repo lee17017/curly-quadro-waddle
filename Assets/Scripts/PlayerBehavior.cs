@@ -93,7 +93,8 @@ public class PlayerBehavior : MonoBehaviour {
             if (boostParticles != null)
             {
                 boostParticles.Play();
-                //Debug.Log(boostParticles.ToString());
+                Debug.Log("Particles!");
+                Debug.Log(boostParticles.isPlaying);
             }
         }
     }
