@@ -108,6 +108,8 @@ public class AnimationManager : MonoBehaviour {
             yield return null;
         }
 
+        finished = true;
+
         yield return new WaitForSeconds(0.5f);
 
         // Start
@@ -120,8 +122,6 @@ public class AnimationManager : MonoBehaviour {
         }
 
         yield return new WaitForSeconds(1);
-
-        finished = true;
     }
 
     void Flicker()
