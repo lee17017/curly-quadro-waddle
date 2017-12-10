@@ -10,11 +10,13 @@ public class Highscore : MonoBehaviour {
     public Text[] lists;
     public InputField userInput;
     public GameObject input;
+    public Text placeHolder;
 
     private int playerStat;
     private string playerName;
 
     private bool enterName;
+    private bool nameInFile = false;
 
     private List<HighscoreElement> scoresList = new List<HighscoreElement>();
 
@@ -47,13 +49,14 @@ public class Highscore : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) && !nameInFile)
         {
             
-            PlayerScore.writeToBoard(playerName, playerStat);
+            writeToFile(playerName, playerStat);
 
             enterName = false;
             nameEntered = true;
+            nameInFile = true;
         }
 
         if (nameEntered)
@@ -77,6 +80,7 @@ public class Highscore : MonoBehaviour {
         //StartCoroutine(limitTime());
         StartCoroutine(getName());
     }
+
 
     IEnumerator getName()
     {

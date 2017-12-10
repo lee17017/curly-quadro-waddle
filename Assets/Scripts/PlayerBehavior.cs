@@ -32,7 +32,7 @@ public class PlayerBehavior : MonoBehaviour {
     void Awake()
     {
         gameObject.SetActive(Settings.IsActive(playerID));
-        //boostParticles = gameObject.transform.GetChild(1).GetComponent<ParticleSystem>();
+        boostParticles = gameObject.transform.GetChild(1).GetComponent<ParticleSystem>();
     }
 
 	// Use this for initialization
@@ -90,7 +90,11 @@ public class PlayerBehavior : MonoBehaviour {
             GameObject temp = (GameObject)Instantiate(projectile, new Vector3(transform.position.x - xOffset, transform.position.y, transform.position.z - zOffset), transform.rotation);
             temp.GetComponentInChildren<SpriteRenderer>().color = playerColor;
             temp.GetComponent<ProjectileBehavior>().playerNmb = playerID;
-            //boostParticles.Play();
+            if (boostParticles != null)
+            {
+                boostParticles.Play();
+                //Debug.Log(boostParticles.ToString());
+            }
         }
     }
 

@@ -95,7 +95,7 @@ public class PlayerJoin : MonoBehaviour {
         switch (playerID)
         {
             case 1:
-                bool startpressed = Input.GetKeyDown(KeyCode.Joystick1Button9);
+                bool startpressed = Input.GetKeyDown(KeyCode.Joystick1Button9) || Input.GetKeyDown(KeyCode.Joystick1Button7);
 
                 if (startpressed)
                 {
@@ -103,7 +103,7 @@ public class PlayerJoin : MonoBehaviour {
                 }
                 break;
             case 2:
-                startpressed = Input.GetKeyDown(KeyCode.Joystick2Button7);
+                startpressed = Input.GetKeyDown(KeyCode.Joystick2Button7) || Input.GetKeyDown(KeyCode.Joystick2Button9);
 
                 if (startpressed)
                 {
@@ -111,7 +111,7 @@ public class PlayerJoin : MonoBehaviour {
                 }
                 break;
             case 3:
-                startpressed = Input.GetKeyDown(KeyCode.Joystick3Button7);
+                startpressed = Input.GetKeyDown(KeyCode.Joystick3Button7) || Input.GetKeyDown(KeyCode.Joystick3Button9);
 
                 if (startpressed)
                 {
@@ -119,7 +119,7 @@ public class PlayerJoin : MonoBehaviour {
                 }
                 break;
             case 4:
-                startpressed = Input.GetKeyDown(KeyCode.Joystick4Button7);
+                startpressed = Input.GetKeyDown(KeyCode.Joystick4Button7) || Input.GetKeyDown(KeyCode.Joystick4Button9);
 
                 if (startpressed)
                 {
