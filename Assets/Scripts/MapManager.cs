@@ -22,6 +22,10 @@ public class MapManager : MonoBehaviour {
 
     public Sprite countdown2, countdown1, countdownGo;
 
+    public GameObject placePrefab;
+    
+    public Color warpColor, blueWarpColor;
+
     // Gridsize
     private int size = 27;
 
@@ -46,6 +50,8 @@ public class MapManager : MonoBehaviour {
         countdownSprite.enabled = false;
 
         CreateMap();
+
+        StartCoroutine(Timer());
     }
 	
 	// Update is called once per frame
@@ -105,12 +111,17 @@ public class MapManager : MonoBehaviour {
     {
         Color glow = Color.black;
         Color glowHill = Color.black;
+        blueWarpColor = Color.black;
+        warpColor = Color.black;
+
 
         float timer = 0;
         while (timer < 2f)
         {
             glow = tileColor * timer;
             glowHill = hillColor * timer;
+            warpColor = Color.white * timer;
+            blueWarpColor = Color.white * timer;
             timer += Time.deltaTime/3f;
             tileMaterial.SetColor("_EmissionColor", glow);
             hillMaterial.SetColor("_EmissionColor", glowHill);
@@ -260,5 +271,19 @@ public class MapManager : MonoBehaviour {
         // Calculate Height
         float height = (size/2f) / Mathf.Tan(Mathf.Deg2Rad*60)*1.5f;
         Camera.main.transform.position = new Vector3((size-1) / 2f, height, ((int)(size / 16f * 9) - 1) / 2f);
+    }
+
+    public IEnumerator Timer()
+    {
+        yield return new WaitForSeconds(60);
+
+        Debug.Log("P1: " + ScoreManager.scores[0]);
+        Debug.Log("P2: " + ScoreManager.scores[1]);
+        Debug.Log("P3: " + ScoreManager.scores[2]);
+        Debug.Log("P4: " + ScoreManager.scores[3]);
+
+        ScoreManager.reset();
+
+        StartCoroutine(Timer());
     }
 }
