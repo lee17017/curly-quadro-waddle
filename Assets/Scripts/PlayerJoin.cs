@@ -42,6 +42,23 @@ public class PlayerJoin : MonoBehaviour {
 
     void SwitchJoined()
     {
+        if(Input.GetKeyDown(KeyCode.Joystick1Button0) || Input.GetKeyDown(KeyCode.Joystick1Button1) || Input.GetKeyDown(KeyCode.Joystick1Button2) || Input.GetKeyDown(KeyCode.Joystick1Button3))
+        {
+            Settings.p1 = joined;
+        }
+        if (Input.GetKeyDown(KeyCode.Joystick2Button0) || Input.GetKeyDown(KeyCode.Joystick2Button1) || Input.GetKeyDown(KeyCode.Joystick2Button2) || Input.GetKeyDown(KeyCode.Joystick2Button3))
+        {
+            Settings.p1 = joined;
+        }
+        if (Input.GetKeyDown(KeyCode.Joystick3Button0) || Input.GetKeyDown(KeyCode.Joystick3Button1) || Input.GetKeyDown(KeyCode.Joystick3Button2) || Input.GetKeyDown(KeyCode.Joystick2Button3))
+        {
+            Settings.p1 = joined;
+        }
+        if (Input.GetKeyDown(KeyCode.Joystick4Button0) || Input.GetKeyDown(KeyCode.Joystick4Button1) || Input.GetKeyDown(KeyCode.Joystick4Button2) || Input.GetKeyDown(KeyCode.Joystick3Button3))
+        {
+            Settings.p1 = joined;
+        }
+
         if (InputManager.current.GetShoot("" + playerID))
         {
             joined = !joined;

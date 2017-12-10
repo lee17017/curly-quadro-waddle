@@ -32,7 +32,7 @@ public class PlayerBehavior : MonoBehaviour {
     void Awake()
     {
         gameObject.SetActive(Settings.IsActive(playerID));
-        boostParticles = gameObject.transform.GetChild(1).GetComponent<ParticleSystem>();
+        //boostParticles = gameObject.transform.GetChild(1).GetComponent<ParticleSystem>();
     }
 
 	// Use this for initialization
