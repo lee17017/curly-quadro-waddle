@@ -8,7 +8,7 @@ public static class ScoreManager {
     public static void reset() {
         for (int i = 0; i < 4; i++)
         {
-            scores[i] = 0;
+            scores[i] = 1000;
             ranking[i] = -1;
         }
             
