@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Highscore : MonoBehaviour {
 
-    public Text list;
+    public Text[] lists;
     public InputField userInput;
     public GameObject input;
 
@@ -16,15 +16,19 @@ public class Highscore : MonoBehaviour {
 
     private bool enterName;
 
-    string[] scores = null; //{ "", "" };
+    private List<HighscoreElement> scoresList = new List<HighscoreElement>();
+
+    
     private bool nameEntered;
 
     private void Awake()
     {
-        list.gameObject.SetActive(false);
+        foreach(Text list in lists){
+            list.gameObject.SetActive(false);
+        }
         input.SetActive(false);
         
-        //playerStat = GameManager.current.winnerScore;
+        playerStat = (int) ScoreManager.getHighestScore();
     }
 
     private void Start()
@@ -91,10 +95,9 @@ public class Highscore : MonoBehaviour {
 
     private bool checkIn(int score)
     {
-        for (int i = 0; i < scores.Length; i += 2)
+        foreach (HighscoreElement element in scoresList)
         {
-            int x;
-            if (Int32.TryParse(scores[i], out x) && (x < score))
+            if(element.score < score)
             {
                 return true;
             }
@@ -104,26 +107,128 @@ public class Highscore : MonoBehaviour {
 
     private void loadList()
     {
+        string[] scores = null; //{ "", "" };
         string scorelist = "";
-        if (System.IO.File.Exists(Application.dataPath + "//resources//scores.txt"))
+        if (System.IO.File.Exists(Application.dataPath + "//scores.txt"))
         {
-            scorelist = System.IO.File.ReadAllText(Application.dataPath + "//resources//scores.txt");//Lese von txt
+            scorelist = System.IO.File.ReadAllText(Application.dataPath + "//scores.txt");//Lese von txt
         }
         scores = scorelist.Split();
+
+        for (int i = 0; i < scores.Length - 1; i += 2)
+        {          
+            scoresList.Add(new HighscoreElement(scores[i+1], Convert.ToInt32(scores[i])));
+        }
     }
 
     private void printList()
     {
-        string display = "";
-        if (scores != null)
+        if(scoresList.Count == 0)
         {
-            for (int i = 0; i < scores.Length-1; i += 2)
-            {
-                display += scores[i] + "\t\t\t" + scores[i + 1] + "\n";
-            }
+            return;
         }
-        list.text = display;
-        list.gameObject.SetActive(true);
+
+        String[] outputs = new String[lists.Length];
+        int numberOfElements = 10 / lists.Length;
+        int j = 0;
+        int i = 0;
+        foreach (HighscoreElement element in scoresList)
+        {
+            if (j >= numberOfElements)
+            {
+                i++;
+                j = 0;
+            }
+
+            outputs[i] += element.toString();
+            j++;
+        }
+
+
+        i = 0;
+        foreach(Text list in lists)
+        {
+            list.text = outputs[i];
+            list.gameObject.SetActive(true);
+            i++;
+        }
+
     }
 
+    public static void writeToFile(string name, int score)
+    {
+        string scorelist = "";
+        if (System.IO.File.Exists(Application.dataPath + "//scores.txt"))
+        {
+            scorelist = System.IO.File.ReadAllText(Application.dataPath + "//scores.txt");//Lese von txt
+        }
+        //Füge neues Score ein
+        string[] wordlist = scorelist.Split();
+        int length = wordlist.Length;
+        Debug.Log(length);
+        if (length % 2 != 0 || length < 2)
+        {
+            scorelist = score + " " + name;
+        }
+        else
+        {
+            bool changed = false;
+            for (int i = 0; i < length; i += 2)
+            {
+                int compare;
+                Int32.TryParse(wordlist[i], out compare);
+                Debug.Log("Vergleich: " + score + " " + compare);
+                if (score > compare)
+                {
+                    if (i > 18)
+                    {
+                        wordlist[i - 1] += " " + score + " " + name;
+                        changed = true;
+                        break;
+                    }
+                    wordlist[i] = score + " " + name + " " + wordlist[i];
+                    changed = true;
+                    Debug.Log(wordlist[i]);
+                    break;
+                }
+            }
+            if (!changed)
+            {
+                wordlist[length - 1] += " " + score + " " + name;
+            }
+
+            scorelist = "";
+            for (int i = 0; i < length; i++)
+            {
+                if (i > 18)
+                {
+                    break;
+                }
+                scorelist += wordlist[i];
+                if (i < length - 1)
+                {
+                    scorelist += " ";
+                }
+            }
+            Debug.Log("Liste: " + scorelist);
+        }
+        System.IO.File.WriteAllText(Application.dataPath + "//scores.txt", scorelist);//Schreibe in txt
+    }
+}
+
+public class HighscoreElement
+{
+    public String name { get; set; }
+    public int score { get; set; }
+
+    public HighscoreElement(String name, int score)
+    {
+        this.name = name;
+        this.score = score;
+    }
+
+    public String toString()
+    {
+        return this.name + "\t\t" + this.score + "\n";
+    }
 }
