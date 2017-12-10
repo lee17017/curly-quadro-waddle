@@ -22,6 +22,8 @@ public class MapManager : MonoBehaviour {
 
     public Sprite countdown2, countdown1, countdownGo;
 
+    public GameObject placePrefab;
+
     // Gridsize
     private int size = 27;
 
