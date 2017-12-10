@@ -20,6 +20,11 @@ public class tester : MonoBehaviour {
         Debug.Log(ScoreManager.draw());
         Debug.Log(ScoreManager.getHighestScore());
         Debug.Log(ScoreManager.getWinner());
+        ScoreManager.calculateRanking();
+        Debug.Log("AAAAAAAAAAAAAAAAAAAaaa");
+        for (int i = 1; i < 5; i++) {
+            Debug.Log(ScoreManager.getRank(i));
+        }
 
     }
 
