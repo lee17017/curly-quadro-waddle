@@ -27,7 +27,10 @@ public class PlaceManager : MonoBehaviour {
     void Update() {
 
         spriteRenderer.enabled = MapManager.current.finished;
-        
+
+        ScoreManager.calculateRanking();
+
+        place = ScoreManager.getRank(playerID);
 
         if(place < 1) { place = 1; }
         if(place > 4) { place = 4; }
