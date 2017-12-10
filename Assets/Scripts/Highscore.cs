@@ -131,6 +131,8 @@ public class Highscore : MonoBehaviour {
         {
             return;
         }
+        scoresList = new List<HighscoreElement>();
+        loadList();
 
         String[] outputs = new String[lists.Length];
         int numberOfElements = 10 / lists.Length;
@@ -138,6 +140,11 @@ public class Highscore : MonoBehaviour {
         int i = 0;
         foreach (HighscoreElement element in scoresList)
         {
+            if (j > 10 || i >= lists.Length)
+            {
+                break;
+            }
+
             if (j >= numberOfElements)
             {
                 i++;
