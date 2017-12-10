@@ -15,17 +15,21 @@ public class ProjectileBehavior : MonoBehaviour {
                                 0,
                                 Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180) * this.transform.localScale.x
                                 )* -projectileSpeed;
-        StartCoroutine(Death());
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	}
-
-    IEnumerator Death()
-    {
-        yield return new WaitForSeconds(lifeTime);
-        Destroy(this.gameObject);
+        lifeTime -= Time.deltaTime;
+        if(lifeTime < 0)
+            Destroy(this.gameObject);
     }
-    
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.tag == "Projectile")
+            lifeTime /= 2;
+    }
+
+
+
 }

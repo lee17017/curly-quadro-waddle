@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -142,14 +142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c45518fda8cf74541a85a3db15475b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: 4ca94d9d3302dad42aa1cf642394a512, type: 3}
-  - {fileID: 21300000, guid: afd436e9678934f46a89597493c75bc4, type: 3}
-  - {fileID: 21300000, guid: 88499a7ea0790eb4498199a62c39123c, type: 3}
-  - {fileID: 21300000, guid: 739b440786ce9e0478d182973bb436a5, type: 3}
-  player: {fileID: 406745147}
-  playerID: 1
-  place: 1
 --- !u!212 &3819397
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -193,7 +185,7 @@ SpriteRenderer:
   m_Size: {x: 10.24, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &3819398
 Transform:
@@ -976,14 +968,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c45518fda8cf74541a85a3db15475b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: 4ca94d9d3302dad42aa1cf642394a512, type: 3}
-  - {fileID: 21300000, guid: afd436e9678934f46a89597493c75bc4, type: 3}
-  - {fileID: 21300000, guid: 88499a7ea0790eb4498199a62c39123c, type: 3}
-  - {fileID: 21300000, guid: 739b440786ce9e0478d182973bb436a5, type: 3}
-  player: {fileID: 134953659}
-  playerID: 3
-  place: 1
 --- !u!212 &667409828
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1027,7 +1011,7 @@ SpriteRenderer:
   m_Size: {x: 10.24, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &667409829
 Transform:
@@ -1073,8 +1057,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 1972860396185064, guid: aae328f29bd5fba459f30abe2b1338c7, type: 2}
-  tileMaterial: {fileID: 2100000, guid: e4892bca8197d8c4eb9f9a30950080fa, type: 2}
-  hillMaterial: {fileID: 2100000, guid: aa4b04c9f30f213439dd63415c20cfab, type: 2}
+  tileMaterial: {fileID: 2100000, guid: 7c34d536298a28540a005818fe395286, type: 2}
+  hillMaterial: {fileID: 2100000, guid: 4a2fc3461bfe99346a9e132c155e4486, type: 2}
   tileColor: {r: 1, g: 0.22794116, b: 0.7550711, a: 1}
   hillColor: {r: 1, g: 0.65, b: 0.125, a: 1}
   p1: {fileID: 2015539926}
@@ -1406,11 +1390,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7fac949e86ce641aeb94659e542c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  king: {fileID: 0}
-  p1: {fileID: 406745147}
-  p2: {fileID: 171648438}
-  p3: {fileID: 134953659}
-  p4: {fileID: 1048316400}
 --- !u!4 &1122285588
 Transform:
   m_ObjectHideFlags: 0
@@ -1545,14 +1524,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c45518fda8cf74541a85a3db15475b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: 4ca94d9d3302dad42aa1cf642394a512, type: 3}
-  - {fileID: 21300000, guid: afd436e9678934f46a89597493c75bc4, type: 3}
-  - {fileID: 21300000, guid: 88499a7ea0790eb4498199a62c39123c, type: 3}
-  - {fileID: 21300000, guid: 739b440786ce9e0478d182973bb436a5, type: 3}
-  player: {fileID: 1048316400}
-  playerID: 4
-  place: 1
 --- !u!212 &1480809447
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1596,7 +1567,7 @@ SpriteRenderer:
   m_Size: {x: 10.24, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &1480809448
 Transform:
@@ -2103,14 +2074,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c45518fda8cf74541a85a3db15475b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: 4ca94d9d3302dad42aa1cf642394a512, type: 3}
-  - {fileID: 21300000, guid: afd436e9678934f46a89597493c75bc4, type: 3}
-  - {fileID: 21300000, guid: 88499a7ea0790eb4498199a62c39123c, type: 3}
-  - {fileID: 21300000, guid: 739b440786ce9e0478d182973bb436a5, type: 3}
-  player: {fileID: 171648438}
-  playerID: 2
-  place: 1
 --- !u!212 &1918093293
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2154,7 +2117,7 @@ SpriteRenderer:
   m_Size: {x: 10.24, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &1918093294
 Transform:
