@@ -43,5 +43,6 @@ public class HillManager : MonoBehaviour {
         }
 
         if(count > 1) { king = null; }
+        else if(king!= null){ ScoreManager.addScore(king.playerID, Time.deltaTime); }
     }
 }
