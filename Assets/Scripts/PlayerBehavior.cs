@@ -13,7 +13,8 @@ public class PlayerBehavior : MonoBehaviour {
     public float rotationSpeed;
     public GameObject projectile;
     public float slowingFactor; //how fast your velocity gets reduced towards 0 
-    public float maxVelocity;
+    public float maxVelocityZ;
+    public float maxVelocityX;
     public float stunDuration;
     public float shootHoldCooldown;
     public float shootDownCooldown;
@@ -94,16 +95,19 @@ public class PlayerBehavior : MonoBehaviour {
     //set Velocity to maxVel value if player is too fast
     void checkMaxVelocity() {
         Vector3 val = new Vector3();
-        for (int i = 0; i < 3; i++)
-        {
-            if (Mathf.Abs(body.velocity[i]) > maxVelocity)
-            {
-                val[i] = maxVelocity * (body.velocity[i]>0 ? 1:-1);
-                Debug.Log("Max Vel" + i);
-            }
-            else
-                val[i] = body.velocity[i];
-        }
+        
+        if (Mathf.Abs(body.velocity.z) > maxVelocityZ)
+            val.z = maxVelocityZ * (body.velocity.z>0 ? 1:-1);
+        else
+            val.z = body.velocity.z;
+
+
+        if (Mathf.Abs(body.velocity.x) > maxVelocityX)
+            val.x = maxVelocityX * (body.velocity.x > 0 ? 1 : -1);
+        else
+            val.x = body.velocity.x;
+
+        val.y = 0;
         body.velocity = val;
     }
 
@@ -168,7 +172,7 @@ public class PlayerBehavior : MonoBehaviour {
 
         if (newPosition.z < 0)
         {
-            newPosition.z += 14;
+            newPosition.z += 13.5f;
         }
 
         transform.position = newPosition;
@@ -177,7 +181,7 @@ public class PlayerBehavior : MonoBehaviour {
     IEnumerator Respawn() {
         state = PlayerState.Respawn;
         GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-        transform.position = startPosition + new Vector3(0, 5+playerID*2, 100);
+        transform.position = startPosition + new Vector3(0, 5+playerID*2, 1000);
         StopCoroutine("Stun");
         GetComponentInChildren<SpriteRenderer>().color = playerColor;
         yield return new WaitForSeconds(respawnTime / 2);
