@@ -90,7 +90,11 @@ public class PlayerBehavior : MonoBehaviour {
             GameObject temp = (GameObject)Instantiate(projectile, new Vector3(transform.position.x - xOffset, transform.position.y, transform.position.z - zOffset), transform.rotation);
             temp.GetComponentInChildren<SpriteRenderer>().color = playerColor;
             temp.GetComponent<ProjectileBehavior>().playerNmb = playerID;
-            //boostParticles.Play();
+            if (boostParticles != null)
+            {
+                //boostParticles.Play();
+                Debug.Log(boostParticles.ToString());
+            }
         }
     }
 
