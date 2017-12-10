@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour {
             crown.GetComponent<SpriteRenderer>().enabled = true;
             for (int j = 0; j < scoreList.Length; j++)
             {
-                scoreList[j].gameObject.active = true;
+                scoreList[j].gameObject.SetActive(true);
                 Text[] children = scoreList[j].gameObject.GetComponentsInChildren<Text>();
                 float score = ScoreManager.scores[j];
                 if (score < 0)
