@@ -2195,7 +2195,7 @@ MonoBehaviour:
   - {fileID: 708906526}
   crown: {fileID: 831426360}
   text: {fileID: 1554202477}
-  timer: 30
+  timer: 20
 --- !u!4 &744523005
 Transform:
   m_ObjectHideFlags: 0
@@ -2407,7 +2407,7 @@ MonoBehaviour:
   countdownGo: {fileID: 21300000, guid: fcb5b5428e6db654fbf07a93dde60433, type: 3}
   countdown3: {fileID: 21300000, guid: 4e0351e112b7d9245ba2961da11ad695, type: 3}
   countdownTime: {fileID: 21300000, guid: 41b82ecc99649014f9476f5e17b963ce, type: 3}
-  countdownOverTime: {fileID: 0}
+  countdownOverTime: {fileID: 21300000, guid: 7279711ccae97244293373535871960f, type: 3}
   warpColor: {r: 0, g: 0, b: 0, a: 0}
   blueWarpColor: {r: 0, g: 0, b: 0, a: 0}
   finished: 0
