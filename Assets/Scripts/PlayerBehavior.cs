@@ -146,7 +146,7 @@ public class PlayerBehavior : MonoBehaviour {
             else if (other.tag == "Deathzone")
             {
                
-                ScoreManager.addScore(playerID, -100);
+                ScoreManager.addScore(playerID, -50);
                 
                 StartCoroutine("Respawn");
             }

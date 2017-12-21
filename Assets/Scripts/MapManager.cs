@@ -385,7 +385,6 @@ public class MapManager : MonoBehaviour {
 
     public IEnumerator CountDownOvertime()
     {
-
         float time = 0;
 
         yield return new WaitForSeconds(10 - 3);

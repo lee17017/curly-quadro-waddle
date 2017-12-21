@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour {
     private static bool countingDown;
 	// Use this for initialization
 	void Start () {
+        countingDown = false;
         once = true;
 	}
 	
@@ -101,7 +102,7 @@ public class GameManager : MonoBehaviour {
             }
 
             yield return new WaitForSeconds(7f);
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(0);
             
 
 
